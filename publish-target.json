@@ -1,0 +1,11 @@
+{
+  "artifact": "https://claude.ai/artifact/2mPwWbqeFHhfAoyoTBJqm1",
+  "title": "FSE基盤",
+  "lastPublished": {
+    "commit": "8540b41",
+    "wordpress": "7.1.3",
+    "woocommerce": "11.2.1",
+    "files": 597,
+    "at": "2026-10-17"
+  }
+}
