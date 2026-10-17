@@ -417,6 +417,110 @@ for (const [comp, block] of [...comps.entries()].sort((a, b) => a[0].localeCompa
   dts.push('}', '');
   catalogue.push({ comp, block, group, rich: handPreviews.has(comp) });
 }
+
+// ---------------------------------------------------------------- omotegae patterns
+//
+// One component per ACTIVE pattern of omotegae's library (data/omotegae/patterns.json,
+// imported from the admin screen's JSON export). Drafts and deprecated patterns are
+// only listed in the 06 section: a design never starts from them.
+
+const patternDoc = readJson(join(DATA, 'omotegae/patterns.json'));
+const patternProvisional = String(patternDoc.appVersion ?? '').startsWith('seed');
+const categoryLabel = new Map(patternDoc.categories.map((c) => [c.slug, c.label]));
+const shortLabel = (slug) => (categoryLabel.get(slug) ?? slug).split('(')[0];
+const TONE_LABELS = {
+  classic: 'クラシック', modern: 'モダン', soft: 'やわらか', sharp: 'シャープ',
+  simple: 'シンプル', rich: 'リッチ', calm: '落ち着いた', vivid: '鮮やか',
+};
+const STATUS_LABELS = { active: '公開', draft: '下書き', deprecated: '非推奨' };
+const patternPreviewsDir = join(SRC, 'pattern-previews');
+const handPatternPreviews = new Set(existsSync(patternPreviewsDir) ? readdirSync(patternPreviewsDir).map((f) => f.replace(/\.html$/, '')) : []);
+
+function patternComponentName(slug) {
+  return 'Pattern' + slug.split('-').map((p) => p[0].toUpperCase() + p.slice(1)).join('');
+}
+
+function patternReadme(comp, p) {
+  const lines = [];
+  lines.push(`# ${comp}`, '');
+  lines.push(`omotegae のパターン「${p.title}」(\`${p.slug}\`)— ${p.description}`, '');
+  lines.push('| 項目 | 内容 |', '|---|---|');
+  lines.push(`| パターン | \`${p.slug}\`(版 ${p.version ?? '?'}) |`);
+  lines.push(`| カテゴリ | ${categoryLabel.get(p.category) ?? p.category}(\`${p.category}\`) |`);
+  lines.push(`| トーン | ${p.toneTags.length ? p.toneTags.map((t) => `${TONE_LABELS[t] ?? t}(\`${t}\`)`).join('、') : '(指定なし)'} |`);
+  lines.push(`| WooCommerce | ${p.requiresWoocommerce ? '必要(WooCommerce を使う案件だけで選ばれる)' : '不要'} |`);
+  lines.push('');
+  lines.push('## 使うブロック', '');
+  lines.push('この順に組む。セクション全体は全幅の `core/group`(`data-pattern` 付き)で包む。', '');
+  for (const b of p.blocks) lines.push(`1. ${blockLink(b)}`);
+  lines.push('');
+  lines.push('## 入れる文言', '');
+  lines.push('ブリーフの `sections[].content` に入る項目。文字数は上限で、超えるとブリーフが確定できない。デザインでもこの長さで収まるようにする。', '');
+  lines.push('| 項目 | 内容 | 上限 | 必須 |', '|---|---|---|---|');
+  for (const f of p.fields) {
+    const limit = f.maxLength !== null ? `${f.maxLength} 字` : f.enum ? f.enum.map((v) => `\`${v}\``).join(' / ') : '';
+    lines.push(`| \`${f.name}\` | ${md(f.label || '(説明なし)')} | ${limit} | ${f.required ? '必須' : ''} |`);
+  }
+  lines.push('');
+  lines.push('## マークアップ', '');
+  lines.push('```html');
+  lines.push(`<section class="wp-block-group alignfull has-global-padding is-layout-constrained"`);
+  lines.push(`         data-wp-block="core/group" data-pattern="${p.slug}">`);
+  lines.push(`  <!-- ${p.blocks.join(' → ')} -->`);
+  lines.push('</section>');
+  lines.push('```', '');
+  lines.push('- 文言はブリーフの値をそのまま入れる。足りない項目(必須でない空欄)は、その要素ごと出さない。');
+  lines.push('- 色・余白・文字サイズはプリセット変数だけで書き、案件の色はトークンの差し替えで出す(「案件ごとの差し替え」)。');
+  lines.push('');
+  return lines.join('\n');
+}
+
+function patternSpecPreview(comp, p, group) {
+  const blocks = p.blocks
+    .map((b, i) => `<li class="ds-pattern__block"><span class="ds-pattern__step">${i + 1}</span><code>${escapeHtml(b)}</code><span class="ds-pattern__comp">${byName.has(b) ? escapeHtml(componentName(b)) : ''}</span></li>`)
+    .join('');
+  const fields = p.fields
+    .map((f) => `<li${f.required ? ' class="is-required"' : ''}>${escapeHtml(f.label || f.name)}${f.maxLength !== null ? ` <span>${f.maxLength}字</span>` : ''}</li>`)
+    .join('');
+  const height = 230 + p.blocks.length * 34 + Math.ceil(p.fields.length / 3) * 28;
+  return `<!-- @dsCard group="${group}" height=${height} floor static subtitle="仕様カード(見た目の再現なし)" -->
+<div class="ds-spec ds-pattern">
+  <div class="ds-spec__head">
+    <h3 class="ds-spec__title">${escapeHtml(p.title)}</h3>
+    <span class="ds-spec__name">${escapeHtml(p.slug)}</span>
+  </div>
+  <p class="ds-spec__meta">${escapeHtml(p.description)}</p>
+  <ol class="ds-pattern__blocks">${blocks}</ol>
+  <ul class="ds-spec__chips">${fields}</ul>
+  <p class="ds-spec__meta">トーン: ${escapeHtml(p.toneTags.map((t) => TONE_LABELS[t] ?? t).join('・') || 'なし')}${p.requiresWoocommerce ? '　/　WooCommerce が必要' : ''}　/　太字の項目は必須</p>
+</div>
+`;
+}
+
+const activePatterns = patternDoc.patterns.filter((p) => p.status === 'active');
+for (const p of activePatterns) {
+  const comp = patternComponentName(p.slug);
+  if (comps.has(comp) || comp === 'Cover') throw new Error(`Pattern component name collides: ${comp}`);
+  const group = `omotegae · ${shortLabel(p.category)}`;
+  put(`components/${comp}/README.md`, patternReadme(comp, p));
+  const preview = handPatternPreviews.has(comp)
+    ? readFileSync(join(patternPreviewsDir, `${comp}.html`), 'utf8').replace(/^<!-- @dsCard /, `<!-- @dsCard group="${group}" `)
+    : patternSpecPreview(comp, p, group);
+  put(`components/${comp}/preview.html`, preview);
+  dts.push(`/** パターン「${p.title}」 — \`${p.slug}\`(omotegae)。ブリーフの sections[].content の項目 */`);
+  dts.push(`export interface ${comp}Props {`);
+  for (const f of p.fields) {
+    const type = f.enum ? f.enum.map((v) => JSON.stringify(v)).join(' | ') : f.type === 'string' ? 'string' : 'unknown';
+    const doc = [f.label, f.maxLength !== null ? `${f.maxLength} 字まで` : ''].filter(Boolean).join('・');
+    if (doc) dts.push(`  /** ${doc.replace(/\*\//g, '* /')} */`);
+    dts.push(`  ${f.name}${f.required ? '' : '?'}: ${type};`);
+  }
+  dts.push('}', '');
+}
+for (const p of handPatternPreviews) {
+  if (!activePatterns.some((a) => patternComponentName(a.slug) === p)) throw new Error(`src/pattern-previews/${p}.html does not match any active pattern`);
+}
+
 put('components/index.d.ts', dts.join('\n'));
 
 // ---------------------------------------------------------------- README and sections
@@ -428,6 +532,7 @@ function fill(text) {
     .replaceAll('{{coreBlocks}}', String(wp.blocks.length))
     .replaceAll('{{wooBlocks}}', String(woo.blocks.length))
     .replaceAll('{{richPreviews}}', String(catalogue.filter((c) => c.rich).length))
+    .replaceAll('{{activePatterns}}', String(activePatterns.length))
     .replaceAll('{{spacingTable}}', spacing.map((s) => `| \`spacing-${s.slug}\` | \`var(--wp--preset--spacing--${s.slug})\` | ${s.size} |`).join('\n'));
 }
 
@@ -503,6 +608,40 @@ const TEMPLATE_LABELS = {
   put('05-block-inventory.md', lines.join('\n'));
 }
 
+// The whole omotegae library, generated: every status, grouped by category in the
+// form's order (the export's `categories`), retired categories last.
+{
+  const lines = [
+    '# omotegae のパターン',
+    '',
+    `omotegae のパターンライブラリ(書き出し日時 ${patternDoc.exportedAt ?? '不明'}、omotegae ${patternDoc.appVersion ?? '?'})。` +
+      `公開中の ${activePatterns.length} 件はそれぞれ部品(\`Pattern…\`)になっている。トップページのセクションは、ブリーフが指定したパターンの部品に従って組む。`,
+    '',
+  ];
+  if (patternProvisional) {
+    lines.push('> **仮のデータ**: いまの内容は omotegae の初期データ(`PatternSeeder`)から作った仮のもの。本番の管理画面から書き出した JSON で置き換えると、この注意は消える。', '');
+  }
+  lines.push(
+    '下書きと非推奨のパターンは部品にしていない。非推奨のパターンは、確定済みの古いブリーフにだけ現れることがある。',
+    '',
+    'この節は、omotegae から書き出した JSON を取り込むたびに自動で作り直される。',
+    '',
+  );
+  const order = patternDoc.categories.map((c) => c.slug);
+  const cats = [...new Set(patternDoc.patterns.map((p) => p.category))].sort(
+    (a, b) => (order.indexOf(a) < 0 ? 99 : order.indexOf(a)) - (order.indexOf(b) < 0 ? 99 : order.indexOf(b)) || a.localeCompare(b),
+  );
+  for (const cat of cats) {
+    lines.push(`## ${categoryLabel.get(cat) ?? `${cat}(廃止されたカテゴリ)`}`, '', '| パターン | 名前 | 状態 | 部品 | 使うブロック |', '|---|---|---|---|---|');
+    for (const p of patternDoc.patterns.filter((x) => x.category === cat)) {
+      const comp = p.status === 'active' ? patternComponentName(p.slug) : '—';
+      lines.push(`| \`${p.slug}\` | ${md(p.title)} | ${STATUS_LABELS[p.status] ?? p.status} | ${comp} | ${p.blocks.map((b) => `\`${b}\``).join(' → ')} |`);
+    }
+    lines.push('');
+  }
+  put('06-omotegae-patterns.md', lines.join('\n'));
+}
+
 // ---------------------------------------------------------------- cover
 
 {
@@ -526,4 +665,4 @@ const batches = [];
 for (let i = 0; i < paths.length; i += 250) batches.push(paths.slice(i, i + 250).map((p) => `project/${p}`));
 writeFile(join(DIST, 'publish-plan.json'), JSON.stringify({ total: paths.length, batches }, null, 2) + '\n');
 
-console.log(`Built ${paths.length} files: ${comps.size} components (${catalogue.filter((c) => c.rich).length} with renditions), ${batches.length} publish batches.`);
+console.log(`Built ${paths.length} files: ${comps.size} block components (${catalogue.filter((c) => c.rich).length} with renditions), ${activePatterns.length} pattern components, ${batches.length} publish batches.`);

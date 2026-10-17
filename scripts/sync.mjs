@@ -183,11 +183,95 @@ function syncWooCommerce() {
   return { tag, count: blocks.length, templates: Object.keys(templates).length };
 }
 
+// omotegae's pattern library, as exported from its admin screen
+// (GET /admin/patterns/export, format omotegae-patterns/1). The export is committed
+// under sources/ by hand; this checks it and keeps only what the design system reads.
+const PATTERN_FORMAT = 'omotegae-patterns/1';
+const SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const STATUSES = ['draft', 'active', 'deprecated'];
+
+function syncOmotegae(knownBlocks) {
+  const file = join(ROOT, sources.omotegae.patternsFile);
+  const doc = readJson(file);
+  const fail = (msg) => {
+    throw new Error(`${sources.omotegae.patternsFile}: ${msg}`);
+  };
+  if (doc.format !== PATTERN_FORMAT) fail(`format must be "${PATTERN_FORMAT}", got ${JSON.stringify(doc.format)}`);
+  if (!Array.isArray(doc.patterns)) fail('patterns is not a list');
+  if (!Array.isArray(doc.categories)) fail('categories is not a list');
+
+  const categories = doc.categories.map((c, i) => {
+    if (!SLUG_RE.test(c?.slug ?? '') || typeof c.label !== 'string') fail(`categories[${i}] is malformed`);
+    return { slug: c.slug, label: c.label };
+  });
+
+  const seen = new Set();
+  const warnings = [];
+  const patterns = doc.patterns.map((p, i) => {
+    const where = `patterns[${i}]${p?.slug ? ` (${p.slug})` : ''}`;
+    if (!SLUG_RE.test(p?.slug ?? '')) fail(`${where}: slug is malformed`);
+    if (seen.has(p.slug)) fail(`${where}: slug appears twice`);
+    seen.add(p.slug);
+    if (!SLUG_RE.test(p.category ?? '')) fail(`${where}: category is malformed`);
+    if (!STATUSES.includes(p.status)) fail(`${where}: unknown status ${JSON.stringify(p.status)}`);
+    for (const key of ['title', 'description_for_ai']) if (typeof p[key] !== 'string') fail(`${where}: ${key} is not a string`);
+    if (!Array.isArray(p.block_map) || p.block_map.some((b) => typeof b !== 'string')) fail(`${where}: block_map is not a list of block names`);
+    if (!Array.isArray(p.tone_tags) || p.tone_tags.some((t) => typeof t !== 'string')) fail(`${where}: tone_tags is not a list`);
+    const schema = p.content_schema;
+    if (!schema || typeof schema !== 'object' || Array.isArray(schema)) fail(`${where}: content_schema is not an object`);
+    const properties = schema.properties && typeof schema.properties === 'object' && !Array.isArray(schema.properties) ? schema.properties : {};
+    const required = Array.isArray(schema.required) ? schema.required : [];
+    for (const b of p.block_map) if (!knownBlocks.has(b)) warnings.push(`${p.slug}: block_map names ${b}, which is not a block in the pinned WordPress / WooCommerce`);
+    return {
+      slug: p.slug,
+      category: p.category,
+      title: p.title,
+      description: p.description_for_ai,
+      blocks: p.block_map,
+      fields: Object.entries(properties).map(([name, def]) => ({
+        name,
+        label: typeof def?.description === 'string' ? def.description : '',
+        type: def?.type ?? null,
+        maxLength: Number.isInteger(def?.maxLength) ? def.maxLength : null,
+        enum: Array.isArray(def?.enum) ? def.enum : null,
+        required: required.includes(name),
+      })),
+      toneTags: p.tone_tags,
+      requiresWoocommerce: p.requires_woocommerce === true,
+      status: p.status,
+      version: Number.isInteger(p.version) ? p.version : null,
+    };
+  });
+  patterns.sort((a, b) => a.slug.localeCompare(b.slug));
+
+  writeFile(
+    join(DATA, 'omotegae/patterns.json'),
+    stableStringify({ format: doc.format, exportedAt: doc.exported_at ?? null, appVersion: doc.app_version ?? null, categories, patterns }),
+  );
+  return { exportedAt: doc.exported_at ?? null, count: patterns.length, active: patterns.filter((p) => p.status === 'active').length, warnings };
+}
+
 const wp = syncWordPress();
 const woo = syncWooCommerce();
+const knownBlocks = new Set([
+  ...readJson(join(DATA, 'wordpress/blocks.json')).blocks.map((b) => b.name),
+  ...readJson(join(DATA, 'woocommerce/blocks.json')).blocks.map((b) => b.name),
+]);
+const omotegae = syncOmotegae(knownBlocks);
 writeFile(
   join(DATA, 'versions.json'),
-  stableStringify({ wordpress: wp.tag, woocommerce: woo.tag, coreBlocks: wp.count, wooBlocks: woo.count, wooTemplates: woo.templates }),
+  stableStringify({
+    wordpress: wp.tag,
+    woocommerce: woo.tag,
+    coreBlocks: wp.count,
+    wooBlocks: woo.count,
+    wooTemplates: woo.templates,
+    omotegaePatternsExportedAt: omotegae.exportedAt,
+    omotegaePatterns: omotegae.count,
+    omotegaeActivePatterns: omotegae.active,
+  }),
 );
 console.log(`WordPress ${wp.tag}: ${wp.count} blocks`);
 console.log(`WooCommerce ${woo.tag}: ${woo.count} blocks, ${woo.templates} templates/parts`);
+console.log(`omotegae patterns (exported ${omotegae.exportedAt}): ${omotegae.count}, ${omotegae.active} active`);
+for (const w of omotegae.warnings) console.warn(`warning: ${w}`);

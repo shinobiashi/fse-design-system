@@ -477,3 +477,19 @@ small, .has-small-font-size { letter-spacing: 0.02em; }
 .ds-spec__chips li { padding: 0.15em 0.6em; border-radius: var(--wp--custom--radius--full); background: var(--wp--preset--color--base-2); font-size: 12px; }
 .ds-spec__chips li.is-off { color: var(--wp--preset--color--contrast-2); text-decoration: line-through; background: none; border: 1px solid var(--wp--preset--color--border); }
 .ds-spec__meta { margin: 0; color: var(--wp--preset--color--contrast-2); }
+
+/* ---------- Spec card for omotegae patterns ---------- */
+.ds-pattern__blocks { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.ds-pattern__block {
+  display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; align-items: center;
+  padding: 6px 10px; border: 1px solid var(--wp--preset--color--border-strong); border-radius: var(--wp--custom--radius--sm);
+  background: var(--wp--preset--color--base-2);
+}
+.ds-pattern__block code { font-family: var(--wp--preset--font-family--mono); font-size: 13px; }
+.ds-pattern__step {
+  display: grid; place-items: center; width: 24px; height: 24px; border-radius: var(--wp--custom--radius--full);
+  background: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); font-size: 12px; font-weight: 700;
+}
+.ds-pattern__comp { color: var(--wp--preset--color--contrast-2); font-size: 12px; }
+.ds-pattern .ds-spec__chips li span { color: var(--wp--preset--color--contrast-2); }
+.ds-pattern .ds-spec__chips li.is-required { font-weight: 700; }

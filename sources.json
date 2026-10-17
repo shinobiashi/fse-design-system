@@ -6,5 +6,9 @@
   "woocommerce": {
     "repo": "woocommerce/woocommerce",
     "tag": "11.2.1"
+  },
+  "omotegae": {
+    "repo": "shinobiashi/omotegae-project",
+    "patternsFile": "sources/omotegae-patterns.json"
   }
 }
