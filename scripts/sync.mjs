@@ -189,6 +189,9 @@ function syncWooCommerce() {
 const PATTERN_FORMAT = 'omotegae-patterns/1';
 const SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const STATUSES = ['draft', 'active', 'deprecated'];
+// Field names become TypeScript property names and brief keys; omotegae uses snake_case.
+const FIELD_RE = /^[a-z][a-z0-9_]*$/;
+const SCHEMA_TYPES = ['string', 'number', 'integer', 'boolean', 'array', 'object', 'null'];
 
 function syncOmotegae(knownBlocks) {
   const file = join(ROOT, sources.omotegae.patternsFile);
@@ -219,8 +222,21 @@ function syncOmotegae(knownBlocks) {
     if (!Array.isArray(p.tone_tags) || p.tone_tags.some((t) => typeof t !== 'string')) fail(`${where}: tone_tags is not a list`);
     const schema = p.content_schema;
     if (!schema || typeof schema !== 'object' || Array.isArray(schema)) fail(`${where}: content_schema is not an object`);
-    const properties = schema.properties && typeof schema.properties === 'object' && !Array.isArray(schema.properties) ? schema.properties : {};
-    const required = Array.isArray(schema.required) ? schema.required : [];
+    const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
+    if (schema.properties !== undefined && !isObject(schema.properties)) fail(`${where}: content_schema.properties is not an object`);
+    const properties = schema.properties ?? {};
+    if (schema.required !== undefined && (!Array.isArray(schema.required) || schema.required.some((r) => typeof r !== 'string'))) {
+      fail(`${where}: content_schema.required is not a list of field names`);
+    }
+    const required = schema.required ?? [];
+    for (const r of required) if (!(r in properties)) fail(`${where}: required field "${r}" has no definition in properties`);
+    for (const [name, def] of Object.entries(properties)) {
+      if (!FIELD_RE.test(name)) fail(`${where}: field name "${name}" is not a lowercase identifier`);
+      if (!isObject(def)) fail(`${where}: field "${name}" is not a schema object`);
+      if (def.type !== undefined && !SCHEMA_TYPES.includes(def.type)) fail(`${where}: field "${name}" has an unknown type ${JSON.stringify(def.type)}`);
+      if (def.enum !== undefined && (!Array.isArray(def.enum) || def.enum.length === 0)) fail(`${where}: field "${name}" has an empty or malformed enum`);
+      if (def.maxLength !== undefined && !(Number.isInteger(def.maxLength) && def.maxLength > 0)) fail(`${where}: field "${name}" has a malformed maxLength`);
+    }
     for (const b of p.block_map) if (!knownBlocks.has(b)) warnings.push(`${p.slug}: block_map names ${b}, which is not a block in the pinned WordPress / WooCommerce`);
     return {
       slug: p.slug,

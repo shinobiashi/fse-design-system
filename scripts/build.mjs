@@ -498,9 +498,12 @@ function patternSpecPreview(comp, p, group) {
 }
 
 const activePatterns = patternDoc.patterns.filter((p) => p.status === 'active');
+const patternComps = new Map(); // component -> slug
 for (const p of activePatterns) {
   const comp = patternComponentName(p.slug);
-  if (comps.has(comp) || comp === 'Cover') throw new Error(`Pattern component name collides: ${comp}`);
+  if (comps.has(comp) || comp === 'Cover') throw new Error(`Pattern component name collides with a block component: ${comp} (${p.slug})`);
+  if (patternComps.has(comp)) throw new Error(`Patterns ${patternComps.get(comp)} and ${p.slug} both map to the component name ${comp}`);
+  patternComps.set(comp, p.slug);
   const group = `omotegae · ${shortLabel(p.category)}`;
   put(`components/${comp}/README.md`, patternReadme(comp, p));
   const preview = handPatternPreviews.has(comp)
@@ -510,10 +513,10 @@ for (const p of activePatterns) {
   dts.push(`/** パターン「${p.title}」 — \`${p.slug}\`(omotegae)。ブリーフの sections[].content の項目 */`);
   dts.push(`export interface ${comp}Props {`);
   for (const f of p.fields) {
-    const type = f.enum ? f.enum.map((v) => JSON.stringify(v)).join(' | ') : f.type === 'string' ? 'string' : 'unknown';
+    const type = tsType({ type: f.type ?? undefined, enum: f.enum ?? undefined });
     const doc = [f.label, f.maxLength !== null ? `${f.maxLength} 字まで` : ''].filter(Boolean).join('・');
     if (doc) dts.push(`  /** ${doc.replace(/\*\//g, '* /')} */`);
-    dts.push(`  ${f.name}${f.required ? '' : '?'}: ${type};`);
+    dts.push(`  ${/^[A-Za-z_$][\w$]*$/.test(f.name) ? f.name : JSON.stringify(f.name)}${f.required ? '' : '?'}: ${type};`);
   }
   dts.push('}', '');
 }

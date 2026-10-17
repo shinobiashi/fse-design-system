@@ -479,10 +479,10 @@ small, .has-small-font-size { letter-spacing: 0.02em; }
 .ds-spec__meta { margin: 0; color: var(--wp--preset--color--contrast-2); }
 
 /* ---------- Spec card for omotegae patterns ---------- */
-.ds-pattern__blocks { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.ds-pattern__blocks { display: grid; gap: var(--wp--preset--spacing--20); margin: 0; padding: 0; list-style: none; }
 .ds-pattern__block {
-  display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; align-items: center;
-  padding: 6px 10px; border: 1px solid var(--wp--preset--color--border-strong); border-radius: var(--wp--custom--radius--sm);
+  display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: var(--wp--preset--spacing--30); align-items: center;
+  padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30); border: 1px solid var(--wp--preset--color--border-strong); border-radius: var(--wp--custom--radius--sm);
   background: var(--wp--preset--color--base-2);
 }
 .ds-pattern__block code { font-family: var(--wp--preset--font-family--mono); font-size: 13px; }
