@@ -523,7 +523,7 @@ for (const p of activePatterns) {
     ? readFileSync(join(patternPreviewsDir, `${comp}.html`), 'utf8').replace(/^<!-- @dsCard /, `<!-- @dsCard group="${group}" `)
     : patternSpecPreview(comp, p, group);
   put(`components/${comp}/preview.html`, preview);
-  dts.push(`/** パターン「${p.title}」 — \`${p.slug}\`(omotegae)。ブリーフの sections[].content の項目 */`);
+  dts.push(`/** パターン「${p.title.replace(/\*\//g, '* /')}」 — \`${p.slug}\`(omotegae)。ブリーフの sections[].content の項目 */`);
   dts.push(`export interface ${comp}Props {`);
   for (const f of p.fields) {
     const type = tsType({ type: f.type ?? undefined, enum: f.enum ?? undefined });

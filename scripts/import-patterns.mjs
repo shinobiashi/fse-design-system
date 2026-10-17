@@ -23,6 +23,12 @@ if (next.format !== 'omotegae-patterns/1') {
   console.error(`Not an omotegae pattern export (format: ${JSON.stringify(next.format)})`);
   process.exit(1);
 }
+// The removal check below reads the slugs, so the list's shape is checked here, before
+// sync.mjs would see it.
+if (!Array.isArray(next.patterns) || next.patterns.some((p) => typeof p?.slug !== 'string')) {
+  console.error('Not an omotegae pattern export (patterns is not a list of patterns with a slug)');
+  process.exit(1);
+}
 
 // omotegae never deletes a pattern (it deprecates it), so a slug that disappears means
 // the wrong file or a truncated download. Refuse before touching anything, unless told.
