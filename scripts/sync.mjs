@@ -220,6 +220,7 @@ function syncOmotegae(knownBlocks) {
     for (const key of ['title', 'description_for_ai']) if (typeof p[key] !== 'string') fail(`${where}: ${key} is not a string`);
     if (!Array.isArray(p.block_map) || p.block_map.some((b) => typeof b !== 'string')) fail(`${where}: block_map is not a list of block names`);
     if (!Array.isArray(p.tone_tags) || p.tone_tags.some((t) => typeof t !== 'string')) fail(`${where}: tone_tags is not a list`);
+    if (typeof p.requires_woocommerce !== 'boolean') fail(`${where}: requires_woocommerce is not a boolean`);
     const schema = p.content_schema;
     if (!schema || typeof schema !== 'object' || Array.isArray(schema)) fail(`${where}: content_schema is not an object`);
     const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
@@ -229,7 +230,7 @@ function syncOmotegae(knownBlocks) {
       fail(`${where}: content_schema.required is not a list of field names`);
     }
     const required = schema.required ?? [];
-    for (const r of required) if (!(r in properties)) fail(`${where}: required field "${r}" has no definition in properties`);
+    for (const r of required) if (!Object.hasOwn(properties, r)) fail(`${where}: required field "${r}" has no definition in properties`);
     for (const [name, def] of Object.entries(properties)) {
       if (!FIELD_RE.test(name)) fail(`${where}: field name "${name}" is not a lowercase identifier`);
       if (!isObject(def)) fail(`${where}: field "${name}" is not a schema object`);
@@ -253,7 +254,7 @@ function syncOmotegae(knownBlocks) {
         required: required.includes(name),
       })),
       toneTags: p.tone_tags,
-      requiresWoocommerce: p.requires_woocommerce === true,
+      requiresWoocommerce: p.requires_woocommerce,
       status: p.status,
       version: Number.isInteger(p.version) ? p.version : null,
     };

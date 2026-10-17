@@ -75,7 +75,7 @@ WordPress {{wordpress}} と WooCommerce {{woocommerce}} のブロックテーマ
 
 - 各部品の README に、ブロック名、置ける場所、スタイルで変えられること(supports)、ブロックスタイル(`is-style-…`)、属性が書いてある。スタイルで変えられることに無い見た目は、テーマ側の CSS が要るので、多用しない。
 - プレビューは 2 種類。見た目を再現した {{richPreviews}} 部品は、そのクラス構成をそのまま使ってよい。それ以外は「仕様カード」で、見た目の再現ではない。
-- `components/index.d.ts` は各ブロックの属性(ブロックのコメント `<!-- wp:… -->` に入る JSON)の一覧。React の部品ではない。
+- `components/index.d.ts` は、各ブロックの属性(ブロックのコメント `<!-- wp:… -->` に入る JSON)と、omotegae のパターンごとの文言の項目(ブリーフの `sections[].content`。`Pattern…Props`)の一覧。React の部品ではない。
 
 ## アイコン
 

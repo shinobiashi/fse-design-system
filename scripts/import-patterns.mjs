@@ -42,9 +42,13 @@ try {
   run('build.mjs');
   run('validate.mjs');
 } catch {
-  // Put the previous export back so sources/ never holds a file that does not build.
-  if (previousText !== null) writeFile(target, previousText);
-  if (previousText !== null) run('sync.mjs');
+  // Put the previous export back so sources/ never holds a file that does not build, and
+  // rebuild: build.mjs empties dist/ before it can fail, so data/ alone is not enough.
+  if (previousText !== null) {
+    writeFile(target, previousText);
+    run('sync.mjs');
+    run('build.mjs');
+  }
   console.error('取り込めませんでした(上のエラーを参照)。前の書き出しに戻しました。');
   process.exit(1);
 }
