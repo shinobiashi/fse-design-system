@@ -11,6 +11,7 @@
     "build": "node scripts/build.mjs",
     "validate": "node scripts/validate.mjs",
     "check-updates": "node scripts/check-updates.mjs",
-    "all": "node scripts/sync.mjs && node scripts/build.mjs && node scripts/validate.mjs"
+    "all": "node scripts/sync.mjs && node scripts/build.mjs && node scripts/validate.mjs",
+    "import-patterns": "node scripts/import-patterns.mjs"
   }
 }

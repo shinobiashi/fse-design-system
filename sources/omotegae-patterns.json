@@ -1,0 +1,1900 @@
+{
+    "format": "omotegae-patterns/1",
+    "exported_at": "2026-10-18T00:00:00+09:00",
+    "app_version": "seed (PatternSeeder の初期データ。本番の書き出しで置き換える)",
+    "categories": [
+        {
+            "slug": "hero",
+            "label": "ファーストビュー(メインビジュアル+行動ボタン)"
+        },
+        {
+            "slug": "campaign",
+            "label": "キャンペーン・特集バナー"
+        },
+        {
+            "slug": "product-grid",
+            "label": "おすすめ・売れ筋商品"
+        },
+        {
+            "slug": "featured-product",
+            "label": "イチオシ商品の詳細紹介"
+        },
+        {
+            "slug": "product-categories",
+            "label": "商品カテゴリ一覧"
+        },
+        {
+            "slug": "features",
+            "label": "選ばれる理由・こだわり"
+        },
+        {
+            "slug": "works",
+            "label": "制作実績・事例"
+        },
+        {
+            "slug": "pricing",
+            "label": "料金・プラン"
+        },
+        {
+            "slug": "testimonials",
+            "label": "お客様の声・レビュー"
+        },
+        {
+            "slug": "shopping-guide",
+            "label": "ご利用ガイド・安心要素(送料・支払い・返品)"
+        },
+        {
+            "slug": "about",
+            "label": "ブランドストーリー・私たちについて"
+        },
+        {
+            "slug": "news",
+            "label": "お知らせ・新着情報"
+        },
+        {
+            "slug": "faq",
+            "label": "よくあるご質問"
+        },
+        {
+            "slug": "lead-capture",
+            "label": "メルマガ・LINE・会員登録"
+        },
+        {
+            "slug": "contact",
+            "label": "お問い合わせ"
+        },
+        {
+            "slug": "cta",
+            "label": "ページ末尾の行動喚起"
+        }
+    ],
+    "patterns": [
+        {
+            "slug": "about-story-01",
+            "category": "about",
+            "title": "創業の想いをストーリーで紹介",
+            "description_for_ai": "創業の経緯や想いを1本のテキストで語る、代表者の顔が見えるabout。",
+            "block_map": [
+                "core/media-text",
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "body"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "body": {
+                        "type": "string",
+                        "maxLength": 300,
+                        "description": "本文(創業の経緯・想いなど)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "calm",
+                "rich"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "about-team-02",
+            "category": "about",
+            "title": "スタッフを写真付きで紹介",
+            "description_for_ai": "メンバーを写真+名前+役割のカードで3名紹介する構成。",
+            "block_map": [
+                "core/columns",
+                "core/column",
+                "core/image",
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "member_1_name",
+                    "member_2_name"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "member_1_name": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "メンバー1の氏名"
+                    },
+                    "member_1_role": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "メンバー1の役割"
+                    },
+                    "member_2_name": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "メンバー2の氏名"
+                    },
+                    "member_2_role": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "メンバー2の役割"
+                    },
+                    "member_3_name": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "メンバー3の氏名"
+                    },
+                    "member_3_role": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "メンバー3の役割"
+                    }
+                }
+            },
+            "tone_tags": [
+                "modern",
+                "simple"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "campaign-banner-01",
+            "category": "campaign",
+            "title": "大きなバナーでキャンペーンを訴求",
+            "description_for_ai": "セール・季節キャンペーンなどを全幅バナーで大きく見せる構成。期間限定の訴求に向く。",
+            "block_map": [
+                "core/cover",
+                "core/heading",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "cta_label"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 40,
+                        "description": "キャンペーンの見出し"
+                    },
+                    "period": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "開催期間(任意)"
+                    },
+                    "cta_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "ボタンのラベル"
+                    }
+                }
+            },
+            "tone_tags": [
+                "vivid",
+                "rich"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "campaign-countdown-02",
+            "category": "campaign",
+            "title": "終了日時を添えて訴求",
+            "description_for_ai": "キャンペーンの終了日時を明記して訴求する構成。期間限定であることを強調したい場合に向く。",
+            "block_map": [
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 40,
+                        "description": "キャンペーンの見出し"
+                    },
+                    "end_date_note": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "終了日時の表記(例: 9月30日まで)"
+                    },
+                    "cta_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "ボタンのラベル(任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "sharp",
+                "vivid"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "cart-checkout-compact-02",
+            "category": "cart-checkout",
+            "title": "カート・お支払いページ(簡潔)",
+            "description_for_ai": "要素を絞ったコンパクトなカート・決済ページ。取扱商品数が少ない店舗に向く。",
+            "block_map": [
+                "woocommerce/cart",
+                "woocommerce/checkout"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [],
+                "properties": {
+                    "trust_message": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "安心感を伝える一言(送料・返品ポリシー等・任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "sharp",
+                "simple"
+            ],
+            "requires_woocommerce": true,
+            "status": "deprecated",
+            "version": 1
+        },
+        {
+            "slug": "cart-checkout-standard-01",
+            "category": "cart-checkout",
+            "title": "カート・お支払いページ(標準)",
+            "description_for_ai": "WooCommerceのカートと決済ページの標準構成。AIが埋めるのは信頼感を補う一言メッセージのみ。",
+            "block_map": [
+                "woocommerce/cart",
+                "woocommerce/checkout",
+                "core/heading"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し(任意)"
+                    },
+                    "trust_message": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "安心感を伝える一言(送料・返品ポリシー等・任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "simple",
+                "calm"
+            ],
+            "requires_woocommerce": true,
+            "status": "deprecated",
+            "version": 1
+        },
+        {
+            "slug": "contact-form-01",
+            "category": "contact",
+            "title": "お問い合わせフォームへ案内",
+            "description_for_ai": "フォームへの導線となる見出し・説明文・送信ボタンラベルを用意するセクション。実際のフォーム項目はプラグイン側で構成する。",
+            "block_map": [
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "submit_label"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "body": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "description": "案内文"
+                    },
+                    "submit_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "送信ボタンのラベル"
+                    }
+                }
+            },
+            "tone_tags": [
+                "soft",
+                "calm"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "contact-info-02",
+            "category": "contact",
+            "title": "住所・電話番号などの店舗情報を紹介",
+            "description_for_ai": "住所・電話番号・メール・営業時間を並べる、フォームを使わない問い合わせセクション。",
+            "block_map": [
+                "core/heading",
+                "core/paragraph",
+                "core/columns",
+                "core/column"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "address",
+                    "phone"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "address": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "description": "住所"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "電話番号"
+                    },
+                    "email": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "メールアドレス"
+                    },
+                    "hours": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "営業時間"
+                    }
+                }
+            },
+            "tone_tags": [
+                "classic",
+                "simple"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "cta-banner-01",
+            "category": "cta",
+            "title": "横いっぱいの帯でお問い合わせを誘導",
+            "description_for_ai": "背景色を敷いた全幅バナーで行動喚起する、視認性重視のCTA。",
+            "block_map": [
+                "core/cover",
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "cta_label"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 36,
+                        "description": "呼びかけの見出し"
+                    },
+                    "body": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "補足文"
+                    },
+                    "cta_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "ボタンのラベル"
+                    }
+                }
+            },
+            "tone_tags": [
+                "vivid",
+                "sharp"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "cta-split-02",
+            "category": "cta",
+            "title": "文章とボタンを並べてお問い合わせに誘導",
+            "description_for_ai": "左にテキスト、右にボタンを配置する控えめなCTA。他セクションとのトーン差を抑えたい場合に向く。",
+            "block_map": [
+                "core/columns",
+                "core/column",
+                "core/heading",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "cta_label"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 36,
+                        "description": "呼びかけの見出し"
+                    },
+                    "cta_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "ボタンのラベル"
+                    },
+                    "cta_sub_label": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "ボタン下の補足"
+                    }
+                }
+            },
+            "tone_tags": [
+                "calm",
+                "simple"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "faq-accordion-01",
+            "category": "faq",
+            "title": "よくある質問を開閉式で4件紹介",
+            "description_for_ai": "よくある質問を開閉式アコーディオンで4件見せる。core/detailsで実装しJSを必要としない。",
+            "block_map": [
+                "core/details",
+                "core/heading"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "question_1",
+                    "answer_1",
+                    "question_2",
+                    "answer_2"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "question_1": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問1"
+                    },
+                    "answer_1": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "description": "回答1"
+                    },
+                    "question_2": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問2"
+                    },
+                    "answer_2": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "description": "回答2"
+                    },
+                    "question_3": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問3"
+                    },
+                    "answer_3": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "description": "回答3"
+                    },
+                    "question_4": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問4"
+                    },
+                    "answer_4": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "description": "回答4"
+                    }
+                }
+            },
+            "tone_tags": [
+                "simple",
+                "modern"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "faq-list-02",
+            "category": "faq",
+            "title": "よくある質問を開いたまま3件紹介",
+            "description_for_ai": "よくある質問を開閉なしで常に全文表示する、件数の少ないシンプルなFAQ。",
+            "block_map": [
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "question_1",
+                    "answer_1"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "question_1": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問1"
+                    },
+                    "answer_1": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "description": "回答1"
+                    },
+                    "question_2": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問2"
+                    },
+                    "answer_2": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "description": "回答2"
+                    },
+                    "question_3": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問3"
+                    },
+                    "answer_3": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "description": "回答3"
+                    }
+                }
+            },
+            "tone_tags": [
+                "classic",
+                "calm"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "featured-product-spotlight-01",
+            "category": "featured-product",
+            "title": "1商品を大きく写真で訴求",
+            "description_for_ai": "一押しの商品を1点だけ大きな写真とともに紹介する構成。看板商品がある店舗に向く。",
+            "block_map": [
+                "woocommerce/single-product",
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "appeal_text": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "description": "商品の魅力を伝える一言"
+                    },
+                    "cta_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "商品ページへのボタンラベル(任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "rich",
+                "classic"
+            ],
+            "requires_woocommerce": true,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "featured-product-story-02",
+            "category": "featured-product",
+            "title": "開発秘話やこだわりを添えて紹介",
+            "description_for_ai": "一押し商品の背景にあるストーリーやこだわりを文章で伝える構成。ブランドの世界観を伝えたい場合に向く。",
+            "block_map": [
+                "core/media-text",
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "story"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "story": {
+                        "type": "string",
+                        "maxLength": 200,
+                        "description": "商品にまつわるストーリー・こだわり"
+                    }
+                }
+            },
+            "tone_tags": [
+                "classic",
+                "calm"
+            ],
+            "requires_woocommerce": true,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "features-columns-01",
+            "category": "features",
+            "title": "強みを3つ横に並べて紹介",
+            "description_for_ai": "強み・特徴を3つのカラムで並列に紹介する定番構成。各カラムは短い見出しと説明文のペア。",
+            "block_map": [
+                "core/columns",
+                "core/column",
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "feature_1_title",
+                    "feature_2_title",
+                    "feature_3_title"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "feature_1_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴1の見出し"
+                    },
+                    "feature_1_body": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "特徴1の説明"
+                    },
+                    "feature_2_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴2の見出し"
+                    },
+                    "feature_2_body": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "特徴2の説明"
+                    },
+                    "feature_3_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴3の見出し"
+                    },
+                    "feature_3_body": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "特徴3の説明"
+                    }
+                }
+            },
+            "tone_tags": [
+                "simple",
+                "modern"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "features-icon-grid-02",
+            "category": "features",
+            "title": "強みをアイコン付きで4つ紹介",
+            "description_for_ai": "アイコン画像+見出し+説明文を4分割グリッドで並べる、情報量が多い場合の特徴紹介。",
+            "block_map": [
+                "core/columns",
+                "core/column",
+                "core/image",
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "feature_1_title",
+                    "feature_2_title",
+                    "feature_3_title",
+                    "feature_4_title"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "feature_1_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴1の見出し"
+                    },
+                    "feature_1_body": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "特徴1の説明"
+                    },
+                    "feature_2_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴2の見出し"
+                    },
+                    "feature_2_body": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "特徴2の説明"
+                    },
+                    "feature_3_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴3の見出し"
+                    },
+                    "feature_3_body": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "特徴3の説明"
+                    },
+                    "feature_4_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴4の見出し"
+                    },
+                    "feature_4_body": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "特徴4の説明"
+                    }
+                }
+            },
+            "tone_tags": [
+                "sharp",
+                "rich"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "hero-cover-01",
+            "category": "hero",
+            "title": "大きな写真の上に見出しを重ねる",
+            "description_for_ai": "全幅の背景画像に見出し・リード文・CTAボタンを重ねる王道のヒーロー。写真素材が用意できる場合に選ぶ。文字は背景の上に載るため短くまとめる。",
+            "block_map": [
+                "core/cover",
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "cta_label"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 40,
+                        "description": "メインの見出し"
+                    },
+                    "subheading": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "補足のリード文"
+                    },
+                    "cta_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "ボタンのラベル"
+                    },
+                    "alignment": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "center"
+                        ],
+                        "description": "テキストの寄せ位置"
+                    }
+                }
+            },
+            "tone_tags": [
+                "modern",
+                "rich",
+                "vivid"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "hero-minimal-03",
+            "category": "hero",
+            "title": "写真を使わず見出しだけで見せる",
+            "description_for_ai": "画像を使わず見出しとボタンのみで構成する落ち着いたヒーロー。写真素材が無い、またはタイポグラフィ主体のブランドに向く。",
+            "block_map": [
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "メインの見出し"
+                    },
+                    "cta_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "ボタンのラベル"
+                    }
+                }
+            },
+            "tone_tags": [
+                "classic",
+                "calm",
+                "simple"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "hero-split-02",
+            "category": "hero",
+            "title": "写真と文章を左右に並べる",
+            "description_for_ai": "左右に画像とテキストを並べる構成。背景に文字を重ねないため長めの説明文にも対応しやすい。",
+            "block_map": [
+                "core/media-text",
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "cta_label"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 36,
+                        "description": "メインの見出し"
+                    },
+                    "body": {
+                        "type": "string",
+                        "maxLength": 120,
+                        "description": "説明文"
+                    },
+                    "cta_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "ボタンのラベル"
+                    },
+                    "image_position": {
+                        "type": "string",
+                        "enum": [
+                            "left",
+                            "right"
+                        ],
+                        "description": "画像の配置"
+                    }
+                }
+            },
+            "tone_tags": [
+                "modern",
+                "sharp",
+                "simple"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "lead-capture-line-02",
+            "category": "lead-capture",
+            "title": "LINE・会員登録への誘導",
+            "description_for_ai": "LINE公式アカウントの友だち追加や会員登録を促す構成。クーポン配布など再訪の動機がある店舗に向く。",
+            "block_map": [
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "cta_label"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "incentive": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "登録特典など誘導文(任意)"
+                    },
+                    "cta_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "登録ボタンのラベル"
+                    }
+                }
+            },
+            "tone_tags": [
+                "modern",
+                "vivid"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "lead-capture-newsletter-01",
+            "category": "lead-capture",
+            "title": "メルマガ登録フォームを設置",
+            "description_for_ai": "メールアドレスを入力してもらいメルマガ登録を促す構成。継続的な情報発信で再訪を促したい店舗に向く。",
+            "block_map": [
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "cta_label"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "body": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "登録を促す一言"
+                    },
+                    "cta_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "登録ボタンのラベル"
+                    }
+                }
+            },
+            "tone_tags": [
+                "simple",
+                "calm"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "news-cards-02",
+            "category": "news",
+            "title": "新着のお知らせをカードで紹介",
+            "description_for_ai": "投稿をカードのグリッドで表示するセクション。一覧自体は動的生成のため、AIが埋めるのは見出しと前文のみ。",
+            "block_map": [
+                "core/query",
+                "core/post-template",
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "intro": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "前文(任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "modern",
+                "rich"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "news-list-01",
+            "category": "news",
+            "title": "新着のお知らせをリストで紹介",
+            "description_for_ai": "投稿を新着順にリスト表示するセクション。一覧自体は動的生成のため、AIが埋めるのは見出しと前文のみ。",
+            "block_map": [
+                "core/query",
+                "core/post-template",
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "intro": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "前文(任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "simple",
+                "calm"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "pricing-cards-02",
+            "category": "pricing",
+            "title": "料金プランを2つのカードで紹介",
+            "description_for_ai": "料金プランを2つのカードで見せる、選択肢を絞ったシンプルな比較。",
+            "block_map": [
+                "core/columns",
+                "core/column",
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "plan_1_name",
+                    "plan_1_price",
+                    "plan_2_name",
+                    "plan_2_price"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "plan_1_name": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン1の名称"
+                    },
+                    "plan_1_price": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン1の価格表記"
+                    },
+                    "plan_1_feature_summary": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "プラン1の特徴まとめ"
+                    },
+                    "plan_2_name": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン2の名称"
+                    },
+                    "plan_2_price": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン2の価格表記"
+                    },
+                    "plan_2_feature_summary": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "プラン2の特徴まとめ"
+                    }
+                }
+            },
+            "tone_tags": [
+                "rich",
+                "modern"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "pricing-table-01",
+            "category": "pricing",
+            "title": "料金プランを3つ並べて比較",
+            "description_for_ai": "料金プランを3つ横並びで比較させる表形式。価格・要点をはっきり見せたい場合に向く。",
+            "block_map": [
+                "core/columns",
+                "core/column",
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "plan_1_name",
+                    "plan_1_price",
+                    "plan_2_name",
+                    "plan_2_price"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "plan_1_name": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン1の名称"
+                    },
+                    "plan_1_price": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン1の価格表記"
+                    },
+                    "plan_1_description": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "プラン1の説明"
+                    },
+                    "plan_2_name": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン2の名称"
+                    },
+                    "plan_2_price": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン2の価格表記"
+                    },
+                    "plan_2_description": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "プラン2の説明"
+                    },
+                    "plan_3_name": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン3の名称"
+                    },
+                    "plan_3_price": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン3の価格表記"
+                    },
+                    "plan_3_description": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "プラン3の説明"
+                    }
+                }
+            },
+            "tone_tags": [
+                "sharp",
+                "simple"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "product-categories-grid-01",
+            "category": "product-categories",
+            "title": "カテゴリをグリッドで一覧表示",
+            "description_for_ai": "WooCommerceの商品カテゴリを画像付きグリッドで一覧表示する構成。取扱カテゴリが複数ある店舗の入り口として使う。",
+            "block_map": [
+                "woocommerce/product-categories",
+                "core/heading"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "intro": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "前文(任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "simple",
+                "modern"
+            ],
+            "requires_woocommerce": true,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "product-categories-tiles-02",
+            "category": "product-categories",
+            "title": "大きめのタイルでカテゴリを紹介",
+            "description_for_ai": "カテゴリごとに大きめのタイル画像で見せる構成。カテゴリ数が少なく1つ1つを目立たせたい店舗に向く。",
+            "block_map": [
+                "woocommerce/product-categories",
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "intro": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "前文(任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "rich",
+                "vivid"
+            ],
+            "requires_woocommerce": true,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "product-detail-gallery-02",
+            "category": "product-detail",
+            "title": "商品ページで写真を大きく見せる",
+            "description_for_ai": "商品画像ギャラリーを大きく見せる単一商品ページ。写真点数が多い商品に向く。",
+            "block_map": [
+                "woocommerce/single-product",
+                "core/gallery",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [],
+                "properties": {
+                    "additional_description": {
+                        "type": "string",
+                        "maxLength": 160,
+                        "description": "商品説明への補足文(任意)"
+                    },
+                    "gallery_caption": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "ギャラリーのキャプション(任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "modern",
+                "rich"
+            ],
+            "requires_woocommerce": true,
+            "status": "deprecated",
+            "version": 1
+        },
+        {
+            "slug": "product-detail-standard-01",
+            "category": "product-detail",
+            "title": "商品ごとの詳しい紹介ページ",
+            "description_for_ai": "WooCommerceの単一商品ページの標準レイアウト。商品名・価格・説明は商品データから自動表示されるため、AIが埋めるのは補足文のみ。",
+            "block_map": [
+                "woocommerce/single-product",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [],
+                "properties": {
+                    "additional_description": {
+                        "type": "string",
+                        "maxLength": 160,
+                        "description": "商品説明への補足文(任意)"
+                    },
+                    "shipping_note": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "配送に関する注記(任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "classic",
+                "soft"
+            ],
+            "requires_woocommerce": true,
+            "status": "deprecated",
+            "version": 1
+        },
+        {
+            "slug": "product-grid-columns-01",
+            "category": "product-grid",
+            "title": "商品を一覧で並べて紹介",
+            "description_for_ai": "WooCommerceの商品を等間隔グリッドで一覧表示する標準的な商品一覧。商品データ自体は動的生成のため、AIが埋めるのは見出しと前文のみ。",
+            "block_map": [
+                "woocommerce/product-collection",
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "intro": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "前文(任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "simple",
+                "modern"
+            ],
+            "requires_woocommerce": true,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "product-grid-featured-02",
+            "category": "product-grid",
+            "title": "おすすめ商品だけを選んで紹介",
+            "description_for_ai": "「おすすめ」等でフィルタした商品だけを見せる商品一覧。訴求を強めたい商品がある場合に向く。",
+            "block_map": [
+                "woocommerce/product-collection",
+                "core/heading",
+                "core/paragraph",
+                "core/buttons"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "cta_label"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "intro": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "前文(任意)"
+                    },
+                    "cta_label": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "一覧へのボタンラベル"
+                    }
+                }
+            },
+            "tone_tags": [
+                "vivid",
+                "rich"
+            ],
+            "requires_woocommerce": true,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "shopping-guide-icons-01",
+            "category": "shopping-guide",
+            "title": "アイコンで送料・支払い・返品を整理",
+            "description_for_ai": "送料・お支払い方法・返品ポリシーなどをアイコン付きで簡潔に並べる構成。安心感を短く伝えたい場合に向く。",
+            "block_map": [
+                "core/heading",
+                "core/columns"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "shipping_note": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "配送についての一言"
+                    },
+                    "payment_note": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "お支払い方法についての一言"
+                    },
+                    "return_note": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "返品についての一言"
+                    }
+                }
+            },
+            "tone_tags": [
+                "simple",
+                "calm"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "shopping-guide-steps-02",
+            "category": "shopping-guide",
+            "title": "ご購入の流れをステップで案内",
+            "description_for_ai": "注文から到着までの流れをステップ形式で案内する構成。ネットショップの利用に不慣れな顧客が多い場合に向く。",
+            "block_map": [
+                "core/heading",
+                "core/list"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "closing_note": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "締めの一言(任意)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "modern",
+                "simple"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "testimonials-cards-02",
+            "category": "testimonials",
+            "title": "お客様の声を3件並べて紹介",
+            "description_for_ai": "お客様の声を3件、カードを横並びにして見せる形式。複数の声を集められる場合に向く。",
+            "block_map": [
+                "core/columns",
+                "core/column",
+                "core/quote"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "testimonial_1_quote",
+                    "testimonial_2_quote",
+                    "testimonial_3_quote"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "testimonial_1_quote": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "description": "声1の本文"
+                    },
+                    "testimonial_1_author": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "声1の発言者名"
+                    },
+                    "testimonial_2_quote": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "description": "声2の本文"
+                    },
+                    "testimonial_2_author": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "声2の発言者名"
+                    },
+                    "testimonial_3_quote": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "description": "声3の本文"
+                    },
+                    "testimonial_3_author": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "声3の発言者名"
+                    }
+                }
+            },
+            "tone_tags": [
+                "modern",
+                "vivid"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "testimonials-quote-01",
+            "category": "testimonials",
+            "title": "お客様の声を1件、大きく紹介",
+            "description_for_ai": "お客様の声を1件、大きな引用文として見せる形式。強い推薦文が1件だけある場合に向く。",
+            "block_map": [
+                "core/quote",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "quote",
+                    "author_name"
+                ],
+                "properties": {
+                    "quote": {
+                        "type": "string",
+                        "maxLength": 140,
+                        "description": "引用する声の本文"
+                    },
+                    "author_name": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "発言者名"
+                    },
+                    "author_role": {
+                        "type": "string",
+                        "maxLength": 40,
+                        "description": "発言者の属性(例: ○○様、△△業)"
+                    }
+                }
+            },
+            "tone_tags": [
+                "calm",
+                "classic"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "works-cards-02",
+            "category": "works",
+            "title": "実績・作品をカードで紹介",
+            "description_for_ai": "作品ごとに画像+タイトル+一言コメントをカードにまとめる。件数を絞って丁寧に見せたい場合に向く。",
+            "block_map": [
+                "core/columns",
+                "core/column",
+                "core/image",
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading",
+                    "work_1_title",
+                    "work_2_title",
+                    "work_3_title"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "work_1_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "作品1のタイトル"
+                    },
+                    "work_1_body": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "作品1のコメント"
+                    },
+                    "work_2_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "作品2のタイトル"
+                    },
+                    "work_2_body": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "作品2のコメント"
+                    },
+                    "work_3_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "作品3のタイトル"
+                    },
+                    "work_3_body": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "作品3のコメント"
+                    }
+                }
+            },
+            "tone_tags": [
+                "classic",
+                "simple"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        },
+        {
+            "slug": "works-gallery-01",
+            "category": "works",
+            "title": "実績・作品を写真で並べて紹介",
+            "description_for_ai": "施工事例・作品写真を並べるギャラリー形式。キャプションは短い作品名のみ。",
+            "block_map": [
+                "core/gallery",
+                "core/heading",
+                "core/paragraph"
+            ],
+            "content_schema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "heading"
+                ],
+                "properties": {
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
+                    },
+                    "work_1_caption": {
+                        "type": "string",
+                        "maxLength": 40,
+                        "description": "作品1のキャプション"
+                    },
+                    "work_2_caption": {
+                        "type": "string",
+                        "maxLength": 40,
+                        "description": "作品2のキャプション"
+                    },
+                    "work_3_caption": {
+                        "type": "string",
+                        "maxLength": 40,
+                        "description": "作品3のキャプション"
+                    },
+                    "work_4_caption": {
+                        "type": "string",
+                        "maxLength": 40,
+                        "description": "作品4のキャプション"
+                    }
+                }
+            },
+            "tone_tags": [
+                "modern",
+                "rich"
+            ],
+            "requires_woocommerce": false,
+            "status": "active",
+            "version": 1
+        }
+    ]
+}

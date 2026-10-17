@@ -7,6 +7,7 @@ WordPress {{wordpress}} と WooCommerce {{woocommerce}} のブロックテーマ
 - **出力は WordPress のブロックが出す HTML に寄せる。** ブロックに当たる要素には、WordPress が付けるのと同じクラス(`wp-block-group`・`wp-block-columns` など)と、`data-wp-block="core/group"` のようにブロック名を書いた属性を付ける。部品一覧に無いブロックは作らない。詳しくは「マークアップの約束」。
 - **値はプリセット変数でだけ書く。** 色は `var(--wp--preset--color--primary)`、文字サイズは `var(--wp--preset--font-size--medium)`、余白は `var(--wp--preset--spacing--50)`、角丸は `var(--wp--custom--radius--md)`。`#1f4e5a` や `24px` のような生の値を書かない(枠線の太さ `1px`・`2px` だけは例外)。
 - **トップページはセクションの積み重ねにする。** 各セクションは全幅の `core/group` で、`data-pattern` にパターンの slug(例: `hero-cover-01`)を書く。セクションの順番は指示どおりにし、勝手に足さない。
+- **セクションの中身は、指定されたパターンの部品に従う。** omotegae のパターンは公開中の {{activePatterns}} 件がそれぞれ部品(`PatternHeroCover01` など)になっていて、使うブロックと、入れる文言の項目・文字数の上限が書いてある。使うブロックは一覧で、順番・入れ子・数は表さない。何をいくつ並べるかは、パターンの説明と文言の項目(`member_1_…`〜`member_3_…` なら 3 つ)から決める。一覧は「omotegae のパターン」。
 - **自分で絶対配置を書かない・JavaScript を書かない。** 重ね合わせが要るときは `core/cover`(CoverBlock)を使う。開閉は `core/details`・`core/accordion`、切り替えは `core/tabs` を使う。
 - **写真は置き場所を示すだけにする。** 写真の代わりに `ds-ph` の箱(`<div class="ds-ph" data-label="商品写真" style="--ds-ratio: 1 / 1"></div>`)を置き、縦横比は「縦横比」のトークンから選ぶ。ストック写真の候補があるときだけ、その画像を使う。
 
@@ -74,7 +75,7 @@ WordPress {{wordpress}} と WooCommerce {{woocommerce}} のブロックテーマ
 
 - 各部品の README に、ブロック名、置ける場所、スタイルで変えられること(supports)、ブロックスタイル(`is-style-…`)、属性が書いてある。スタイルで変えられることに無い見た目は、テーマ側の CSS が要るので、多用しない。
 - プレビューは 2 種類。見た目を再現した {{richPreviews}} 部品は、そのクラス構成をそのまま使ってよい。それ以外は「仕様カード」で、見た目の再現ではない。
-- `components/index.d.ts` は各ブロックの属性(ブロックのコメント `<!-- wp:… -->` に入る JSON)の一覧。React の部品ではない。
+- `components/index.d.ts` は、各ブロックの属性(ブロックのコメント `<!-- wp:… -->` に入る JSON)と、omotegae のパターンごとの文言の項目(ブリーフの `sections[].content`。`Pattern…Props`)の一覧。React の部品ではない。
 
 ## アイコン
 
