@@ -1,0 +1,48 @@
+<!-- @dsCard height=288 -->
+<div class="cover">
+  <svg class="art" viewBox="0 0 960 288" width="960" height="288" aria-hidden="true">
+    <!--
+      blocks: primary 3x3 tiles, secondary 2x2, contrast 2x1, accent 1x1, base-2 tint as the remaining tiles
+      arrangement: a flush modular grid right of x=480, like blocks stacked in the editor (wide groups beside single blocks)
+      pattern: "geometric, modular" — tiles cut by the radius scale, some merged two-wide, because the system IS a block grid
+      scales: unit = spacing-70 (54px), gap = spacing-30 (≈11px), corners = radius-sm (4px) and radius-md (8px)
+    -->
+    <style>
+      .t { rx: var(--radius-sm); }
+      .m { rx: var(--radius-md); }
+      .c-primary { fill: var(--primary); }
+      .c-secondary { fill: var(--secondary); }
+      .c-accent { fill: var(--accent); }
+      .c-contrast { fill: var(--contrast); }
+      .c-tint { fill: var(--base-2); }
+      .c-line { fill: var(--border-strong); }
+    </style>
+    <!-- column x: 496 561 626 691 756 821 886 ; row y: 13 78 143 208 (step 65 = 54 + 11) -->
+    <rect class="m c-primary" x="496" y="13" width="184" height="184" />
+    <rect class="t c-tint" x="691" y="13" width="119" height="54" />
+    <rect class="t c-accent" x="821" y="13" width="54" height="54" />
+    <rect class="t c-tint" x="886" y="13" width="54" height="54" />
+    <rect class="m c-secondary" x="691" y="78" width="119" height="119" />
+    <rect class="t c-tint" x="821" y="78" width="119" height="54" />
+    <rect class="t c-line" x="821" y="143" width="54" height="54" />
+    <rect class="t c-tint" x="886" y="143" width="54" height="54" />
+    <rect class="t c-tint" x="496" y="208" width="54" height="54" />
+    <rect class="t c-tint" x="561" y="208" width="119" height="54" />
+    <rect class="m c-contrast" x="691" y="208" width="119" height="54" />
+    <rect class="t c-tint" x="821" y="208" width="119" height="54" />
+  </svg>
+  <div class="name">
+    <h1>FSE基盤</h1>
+    <p>WordPress {{wordpress}} × WooCommerce {{woocommerce}} のデザインの土台</p>
+  </div>
+  <style>
+    .cover { position: relative; width: 960px; height: 288px; background: var(--base); overflow: hidden; }
+    .cover .art { position: absolute; inset: 0; }
+    .cover .name { position: absolute; left: 40px; bottom: 36px; max-width: 440px; }
+    .cover h1 {
+      margin: 0; font-family: var(--font-sans); font-size: 96px; font-weight: 700; line-height: 0.95;
+      letter-spacing: 0.02em; color: var(--contrast);
+    }
+    .cover p { margin: 14px 0 0; font-family: var(--font-sans); font-size: 14px; line-height: 1.6; color: var(--contrast-2); }
+  </style>
+</div>

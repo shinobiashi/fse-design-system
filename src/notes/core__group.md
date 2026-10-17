@@ -1,0 +1,4 @@
+- セクションの土台。トップページの各セクションは `alignfull` の Group にし、`data-pattern` にパターンの slug を書く。
+- 中身の幅は `is-layout-constrained`(本文は `content-size`、`alignwide` の子は `wide-size`)。横並びは Row(`is-layout-flex`)、縦積みは Stack(`is-vertical`)、タイル状は Grid(`is-layout-grid`)。
+- セクションの背景は `has-base-2-background-color` などのクラスで指定し、`base` と交互にして区切り線の代わりにする。
+- 上下の余白は `padding-top`/`padding-bottom` に `var(--wp--preset--spacing--80)`(スマホは 70)。

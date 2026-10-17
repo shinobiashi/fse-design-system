@@ -1,0 +1,80 @@
+{
+  "name": "FSE基盤",
+  "version": 1,
+  "color": {
+    "note": "色トークン名は theme.json の settings.color.palette の slug と一致させる(トークン base ⇄ var(--wp--preset--color--base))。値は中立の仮置きで、案件ごとにブリーフの色へ差し替える。slug は差し替えない。",
+    "themes": [{ "id": "light", "name": "Light" }],
+    "tokens": [
+      { "name": "base", "value": "#ffffff", "usage": "ページの背景。本文の地。" },
+      { "name": "base-2", "value": "#f4f4f1", "usage": "セクションの背景・カード・入力欄の地。base と交互に使い、区切り線の代わりにする。" },
+      { "name": "contrast", "value": "#1b1b1a", "usage": "本文・見出しの文字色。base と base-2 の上で使う。" },
+      { "name": "contrast-2", "value": "#585854", "usage": "補足文・日付・注記・税込表記などの控えめな文字。base と base-2 の上で使う。" },
+      { "name": "border", "value": "#dcdcd6", "usage": "装飾の区切り線・カードの輪郭。意味を持たない線だけに使う(入力欄の枠には border-strong)。" },
+      { "name": "border-strong", "value": "#7a7a74", "usage": "入力欄・選択肢・数量欄など、操作できる部品の枠線。base と base-2 の上で 3:1 以上。" },
+      { "name": "primary", "value": "#1f4e5a", "usage": "ブランドの主色。主要ボタンの地・リンク・強調。案件のメインカラーに差し替える(ブリーフの palette の primary)。" },
+      { "name": "on-primary", "value": "#ffffff", "usage": "primary の地に載せる文字・アイコン。primary を差し替えたら、4.5:1 を満たす色に合わせて変える。" },
+      { "name": "secondary", "value": "#5c4a3d", "usage": "ブランドの副色。副ボタン・カテゴリの見出し・タグ。base の上の文字としても使える。" },
+      { "name": "on-secondary", "value": "#ffffff", "usage": "secondary の地に載せる文字。" },
+      { "name": "accent", "value": "#a8461f", "usage": "キャンペーン・新着など、ページ内で数か所だけ目を引く要素。広い面には使わない。" },
+      { "name": "on-accent", "value": "#ffffff", "usage": "accent の地に載せる文字。" },
+      { "name": "sale", "value": "#b0261b", "usage": "セール価格・セールバッジ(woocommerce/product-sale-badge)。必ず「SALE」「◯%OFF」などの文字と組み合わせ、色だけで伝えない。" },
+      { "name": "on-sale", "value": "#ffffff", "usage": "sale の地に載せるバッジの文字。" },
+      { "name": "success", "value": "#1c5e8c", "usage": "完了・在庫ありの通知(woocommerce/store-notices の成功)。赤緑の区別に頼らないよう青寄りにしている。文言と必ず併用する。" },
+      { "name": "warning", "value": "#7a5200", "usage": "残りわずか・注意の通知と文字。base の上の文字として使う。" },
+      { "name": "error", "value": "#b0261b", "usage": "入力エラー・在庫切れ・失敗の通知。文言と必ず併用する。" },
+      { "name": "focus", "value": "{contrast}", "usage": "キーボード操作時のフォーカスリング。2px の実線を 2px 離して描き、base と base-2 の上で 3:1 以上を保つ。" }
+    ]
+  },
+  "type": {
+    "fonts": [],
+    "families": {
+      "sans": "\"Noto Sans JP\", \"Hiragino Sans\", \"Hiragino Kaku Gothic ProN\", \"Yu Gothic\", Meiryo, sans-serif",
+      "serif": "\"Noto Serif JP\", \"Hiragino Mincho ProN\", \"Yu Mincho\", serif",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    },
+    "groups": [
+      {
+        "name": "本文",
+        "family": "sans",
+        "styles": [
+          { "name": "small", "fontSize": "14px", "lineHeight": 1.7, "fontWeight": 400, "letterSpacing": "0.02em", "sample": "送料無料ライン 5,500円(税込)以上", "usage": "注記・キャプション・税込表記・パンくず。theme.json の fontSizes slug small。" },
+          { "name": "medium", "fontSize": "16px", "lineHeight": 1.9, "fontWeight": 400, "letterSpacing": "0.04em", "sample": "職人が一つずつ仕上げた器を、毎日の食卓へお届けします。", "usage": "本文の既定。和文の本文は行間 1.8〜1.9 を保つ。slug medium。" },
+          { "name": "large", "fontSize": "19px", "lineHeight": 1.8, "fontWeight": 400, "letterSpacing": "0.04em", "sample": "季節の新作が入荷しました", "usage": "リード文・商品の価格・小見出し(h4〜h6)。slug large。" }
+        ]
+      },
+      {
+        "name": "見出し",
+        "family": "sans",
+        "styles": [
+          { "name": "x-large", "fontSize": "24px", "lineHeight": 1.5, "fontWeight": 700, "letterSpacing": "0.04em", "sample": "人気の商品", "usage": "セクション見出し(h3)・商品名(一覧)。slug x-large。" },
+          { "name": "xx-large", "fontSize": "32px", "lineHeight": 1.4, "fontWeight": 700, "letterSpacing": "0.03em", "sample": "暮らしに寄り添う道具", "usage": "ページ見出し(h1・h2)・商品詳細の商品名。slug xx-large。" },
+          { "name": "xxx-large", "fontSize": "44px", "lineHeight": 1.3, "fontWeight": 700, "letterSpacing": "0.02em", "sample": "春の新作", "usage": "ファーストビューのキャッチコピーだけ。1 ページに 1 回。slug xxx-large。スマホでは xx-large に落とす(theme.json の fluid で指定)。" }
+        ]
+      },
+      {
+        "name": "明朝(任意)",
+        "family": "serif",
+        "styles": [
+          { "name": "display-serif", "fontSize": "40px", "lineHeight": 1.4, "fontWeight": 500, "letterSpacing": "0.08em", "sample": "手しごとの、うつわ", "usage": "和の業種・高級感のある案件で、ファーストビューの見出しにだけ使う。本文には使わない。fontFamilies slug serif。" }
+        ]
+      }
+    ]
+  },
+  "radius": {
+    "note": "WordPress には角丸のプリセットが無いので、theme.json の settings.custom.radius に置く(トークン radius-md ⇄ var(--wp--custom--radius--md))。",
+    "tokens": [
+      { "name": "radius-none", "value": "0px", "usage": "写真・全幅のカバー・表。" },
+      { "name": "radius-sm", "value": "4px", "usage": "入力欄・数量欄・バッジ・タグ。" },
+      { "name": "radius-md", "value": "8px", "usage": "ボタン・カード・通知。" },
+      { "name": "radius-lg", "value": "16px", "usage": "大きなカード・モーダル・ミニカートの引き出し。" },
+      { "name": "radius-full", "value": "9999px", "usage": "丸いアイコンボタン・アバター・ピル型のタグ。" }
+    ]
+  },
+  "layout": {
+    "note": "theme.json の settings.layout。constrained レイアウトの中身の幅(contentSize)と、alignwide の幅(wideSize)。alignfull は画面幅。",
+    "tokens": [
+      { "name": "content-size", "value": "720px", "usage": "本文・説明文の読みやすい幅。constrained の既定の幅。" },
+      { "name": "wide-size", "value": "1200px", "usage": "商品一覧・カラム・カバーの中身など alignwide の幅。" }
+    ]
+  }
+}

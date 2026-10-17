@@ -1,0 +1,3 @@
+- ヘッダーとフッターはこのブロック。`data-area="header"`/`"footer"` を付ける。
+- ヘッダーの構成は、左にロゴ(`core/site-logo` か `core/site-title`)、中央か右にメニュー、右端にアカウント(`WcCustomerAccount`)とミニカート(`WcMiniCart`)。
+- フッターには特定商取引法に基づく表記・プライバシーポリシー・お問い合わせへのリンクを必ず置く(日本の EC の必須項目)。

@@ -1,0 +1,53 @@
+<!-- @dsCard height=900 subtitle="静的な再現(実際の出力と細部が異なることがある)" -->
+<div class="ds-stage">
+  <div class="wp-block-woocommerce-checkout wc-block-checkout" data-wp-block="woocommerce/checkout">
+    <div class="wc-block-components-sidebar-layout">
+      <form class="wc-block-checkout__form" data-wp-block="woocommerce/checkout-fields-block">
+        <div class="wc-block-components-express-payment" data-wp-block="woocommerce/checkout-express-payment-block">
+          <p class="wc-block-components-express-payment__title">かんたん決済</p>
+          <div class="wc-block-components-express-payment__buttons"><div class="ds-ph" data-label="決済ボタン"></div><div class="ds-ph" data-label="決済ボタン"></div></div>
+        </div>
+        <fieldset class="wc-block-components-checkout-step" data-wp-block="woocommerce/checkout-contact-information-block" style="border: 0; padding: 0; margin: 0">
+          <div class="wc-block-components-checkout-step__heading"><h2 class="wc-block-components-checkout-step__title">連絡先</h2></div>
+          <p class="wc-block-components-checkout-step__description">注文の確認メールをお送りします。</p>
+          <div class="wc-block-components-text-input"><label for="ds-email">メールアドレス</label><input id="ds-email" type="email" value="hanako@example.jp"></div>
+        </fieldset>
+        <fieldset class="wc-block-components-checkout-step" data-wp-block="woocommerce/checkout-shipping-address-block" style="border: 0; padding: 0; margin: 0">
+          <div class="wc-block-components-checkout-step__heading"><h2 class="wc-block-components-checkout-step__title">お届け先</h2></div>
+          <div class="wc-block-components-address-form">
+            <div class="wc-block-components-text-input"><label>姓</label><input value="明石"></div>
+            <div class="wc-block-components-text-input"><label>名</label><input value="花子"></div>
+            <div class="wc-block-components-text-input has-error"><label>郵便番号</label><input value="673-00" aria-invalid="true"><div class="wc-block-components-validation-error" role="alert">郵便番号を 7 桁で入力してください。</div></div>
+            <div class="wc-block-components-text-input"><label>都道府県</label><input value="兵庫県"></div>
+            <div class="wc-block-components-text-input is-wide"><label>市区町村・番地</label><input value="明石市大明石町 1-1"></div>
+            <div class="wc-block-components-text-input is-wide"><label>電話番号</label><input value="078-000-0000"></div>
+          </div>
+        </fieldset>
+        <fieldset class="wc-block-components-checkout-step" data-wp-block="woocommerce/checkout-shipping-methods-block" style="border: 0; padding: 0; margin: 0">
+          <div class="wc-block-components-checkout-step__heading"><h2 class="wc-block-components-checkout-step__title">配送方法</h2></div>
+          <div class="wc-block-components-radio-control">
+            <label class="wc-block-components-radio-control__option"><input class="wc-block-components-radio-control__input" type="radio" name="ds-ship" checked><span><span class="wc-block-components-radio-control__label">通常配送</span><span class="wc-block-components-radio-control__description">3〜5 営業日で発送</span></span><span class="wc-block-components-radio-control__secondary-label">¥880</span></label>
+            <label class="wc-block-components-radio-control__option"><input class="wc-block-components-radio-control__input" type="radio" name="ds-ship"><span><span class="wc-block-components-radio-control__label">日時指定</span><span class="wc-block-components-radio-control__description">お届け日と時間帯を選べます</span></span><span class="wc-block-components-radio-control__secondary-label">¥1,100</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="wc-block-components-checkout-step" data-wp-block="woocommerce/checkout-payment-block" style="border: 0; padding: 0; margin: 0">
+          <div class="wc-block-components-checkout-step__heading"><h2 class="wc-block-components-checkout-step__title">お支払い方法</h2></div>
+          <div class="wc-block-components-radio-control">
+            <label class="wc-block-components-radio-control__option"><input class="wc-block-components-radio-control__input" type="radio" name="ds-pay" checked><span class="wc-block-components-radio-control__label">クレジットカード</span></label>
+            <label class="wc-block-components-radio-control__option"><input class="wc-block-components-radio-control__input" type="radio" name="ds-pay"><span class="wc-block-components-radio-control__label">銀行振込</span></label>
+          </div>
+        </fieldset>
+        <label class="wc-block-components-checkbox" data-wp-block="woocommerce/checkout-terms-block"><input type="checkbox"><span><a href="#">利用規約</a>と<a href="#">プライバシーポリシー</a>に同意します</span></label>
+        <div class="wc-block-checkout__actions" data-wp-block="woocommerce/checkout-actions-block"><a href="#">← カートに戻る</a><button class="wp-block-button__link wp-element-button" type="submit">注文を確定する</button></div>
+      </form>
+      <div class="wc-block-components-sidebar" data-wp-block="woocommerce/checkout-totals-block">
+        <h2 class="wc-block-components-title" data-wp-block="woocommerce/checkout-order-summary-block">ご注文内容</h2>
+        <div class="wc-block-components-order-summary-item" data-wp-block="woocommerce/checkout-order-summary-cart-items-block"><div class="ds-ph" data-label="画像"></div><div>信楽の平皿 15cm<div class="wc-block-components-order-summary-item__quantity">数量 1</div></div><span>¥3,300</span></div>
+        <div class="wc-block-components-order-summary-item"><div class="ds-ph" data-label="画像"></div><div>粉引のマグカップ<div class="wc-block-components-order-summary-item__quantity">数量 1</div></div><span>¥3,080</span></div>
+        <div class="wc-block-components-totals-item"><span>小計</span><span>¥6,380</span></div>
+        <div class="wc-block-components-totals-item"><span>送料</span><span>¥880</span></div>
+        <div class="wc-block-components-totals-item wc-block-components-totals-footer-item"><span>合計(税込)</span><span>¥7,260</span></div>
+      </div>
+    </div>
+  </div>
+</div>

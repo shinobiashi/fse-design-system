@@ -1,0 +1,39 @@
+name: Check WordPress / WooCommerce updates
+
+# Every Monday 09:00 JST (00:00 UTC), and on demand from the Actions tab.
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Look for new releases and rebuild
+        id: check
+        run: node scripts/check-updates.mjs
+
+      - name: Open a pull request
+        if: steps.check.outputs.updated == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: ${{ steps.check.outputs.branch }}
+          title: ${{ steps.check.outputs.title }}
+          commit-message: ${{ steps.check.outputs.title }}
+          body-path: dist/update-summary.md
+          add-paths: |
+            sources.json
+            data/**
+          labels: dependencies
+          delete-branch: true

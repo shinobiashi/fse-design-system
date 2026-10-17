@@ -1,0 +1,26 @@
+{
+  "core": {
+    "text": "Core · テキスト",
+    "media": "Core · メディア",
+    "design": "Core · デザイン",
+    "widgets": "Core · ウィジェット",
+    "theme": "Core · テーマ",
+    "embed": "Core · 埋め込み",
+    "reusable": "Core · 再利用"
+  },
+  "woocommerce": [
+    ["^(mini-cart|empty-mini-cart|filled-mini-cart)", "Woo · ミニカート"],
+    ["^(customer-account|cart-link)$", "Woo · ヘッダー"],
+    ["^(cart|proceed-to-checkout|empty-cart|filled-cart|saved-for-later)", "Woo · カート"],
+    ["^checkout", "Woo · チェックアウト"],
+    ["^order-confirmation", "Woo · 注文完了"],
+    ["(filter|^active-filters)", "Woo · 絞り込み"],
+    ["review", "Woo · レビュー"],
+    ["^(add-to-cart|add-to-wishlist|wishlist)", "Woo · カートに追加"],
+    ["^product-(gallery|image)", "Woo · 商品画像"],
+    ["^(product-collection|product-template|product-new|product-on-sale|product-best-sellers|product-top-rated|product-category|product-tag|all-products|handpicked-products|products-by-attribute|related-products|product-query)", "Woo · 商品一覧"],
+    ["^(product-|single-product)", "Woo · 商品の要素"],
+    ["^(catalog-sorting|breadcrumbs|store-notices|category-|product-categories|featured-|coupon-code|payment-method-icons|page-content-wrapper)", "Woo · ストア共通"],
+    [".*", "Woo · その他"]
+  ]
+}

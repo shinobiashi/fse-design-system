@@ -1,0 +1,1281 @@
+{
+  "repo": "woocommerce/woocommerce",
+  "templates": {
+    "parts/checkout-header": [
+      {
+        "attrs": {
+          "area": "header",
+          "layout": {
+            "type": "constrained"
+          },
+          "tagName": "header"
+        },
+        "children": [
+          {
+            "attrs": {
+              "align": "wide",
+              "layout": {
+                "justifyContent": "space-between",
+                "type": "flex"
+              }
+            },
+            "children": [
+              {
+                "attrs": {
+                  "level": 0
+                },
+                "children": [],
+                "name": "core/site-title"
+              },
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/cart-link"
+              }
+            ],
+            "name": "core/group"
+          }
+        ],
+        "name": "core/group"
+      }
+    ],
+    "parts/coming-soon-social-links": [
+      {
+        "attrs": {
+          "className": "is-style-logos-only"
+        },
+        "children": [
+          {
+            "attrs": {},
+            "children": [],
+            "name": "core/social-link"
+          },
+          {
+            "attrs": {},
+            "children": [],
+            "name": "core/social-link"
+          },
+          {
+            "attrs": {},
+            "children": [],
+            "name": "core/social-link"
+          }
+        ],
+        "name": "core/social-links"
+      }
+    ],
+    "parts/external-product-add-to-cart-with-options": [
+      {
+        "attrs": {
+          "layout": {
+            "flexWrap": "nowrap",
+            "type": "flex"
+          }
+        },
+        "children": [
+          {
+            "attrs": {
+              "textAlign": "left"
+            },
+            "children": [],
+            "name": "woocommerce/product-button"
+          }
+        ],
+        "name": "core/group"
+      }
+    ],
+    "parts/grouped-product-add-to-cart-with-options": [
+      {
+        "attrs": {},
+        "children": [
+          {
+            "attrs": {},
+            "children": [
+              {
+                "attrs": {
+                  "layout": {
+                    "flexWrap": "nowrap",
+                    "justifyContent": "left",
+                    "type": "flex"
+                  }
+                },
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/add-to-cart-with-options-grouped-product-item-selector"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/add-to-cart-with-options-grouped-product-item-label"
+                  },
+                  {
+                    "attrs": {
+                      "layout": {
+                        "justifyContent": "right",
+                        "orientation": "vertical",
+                        "type": "flex"
+                      }
+                    },
+                    "children": [
+                      {
+                        "attrs": {
+                          "textAlign": "right"
+                        },
+                        "children": [],
+                        "name": "woocommerce/product-price"
+                      },
+                      {
+                        "attrs": {},
+                        "children": [],
+                        "name": "woocommerce/product-stock-indicator"
+                      }
+                    ],
+                    "name": "core/group"
+                  }
+                ],
+                "name": "core/group"
+              }
+            ],
+            "name": "woocommerce/add-to-cart-with-options-grouped-product-item"
+          }
+        ],
+        "name": "woocommerce/add-to-cart-with-options-grouped-product-selector"
+      },
+      {
+        "attrs": {
+          "layout": {
+            "flexWrap": "nowrap",
+            "type": "flex"
+          }
+        },
+        "children": [
+          {
+            "attrs": {
+              "textAlign": "left"
+            },
+            "children": [],
+            "name": "woocommerce/product-button"
+          }
+        ],
+        "name": "core/group"
+      }
+    ],
+    "parts/mini-cart": [
+      {
+        "attrs": {},
+        "children": [
+          {
+            "attrs": {},
+            "children": [
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/mini-cart-title-label-block"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/mini-cart-title-items-counter-block"
+                  }
+                ],
+                "name": "woocommerce/mini-cart-title-block"
+              },
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/mini-cart-products-table-block"
+                  }
+                ],
+                "name": "woocommerce/mini-cart-items-block"
+              },
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/mini-cart-cart-button-block"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/mini-cart-checkout-button-block"
+                  }
+                ],
+                "name": "woocommerce/mini-cart-footer-block"
+              }
+            ],
+            "name": "woocommerce/filled-mini-cart-contents-block"
+          },
+          {
+            "attrs": {},
+            "children": [
+              {
+                "attrs": {
+                  "slug": "woocommerce/mini-cart-empty-cart-message"
+                },
+                "children": [],
+                "name": "core/pattern"
+              },
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/mini-cart-shopping-button-block"
+              }
+            ],
+            "name": "woocommerce/empty-mini-cart-contents-block"
+          }
+        ],
+        "name": "woocommerce/mini-cart-contents"
+      }
+    ],
+    "parts/simple-product-add-to-cart-with-options": [
+      {
+        "attrs": {},
+        "children": [],
+        "name": "woocommerce/product-stock-indicator"
+      },
+      {
+        "attrs": {
+          "layout": {
+            "flexWrap": "wrap",
+            "type": "flex",
+            "verticalAlignment": "stretch"
+          }
+        },
+        "children": [
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/add-to-cart-with-options-quantity-selector"
+          },
+          {
+            "attrs": {
+              "textAlign": "left"
+            },
+            "children": [],
+            "name": "woocommerce/product-button"
+          }
+        ],
+        "name": "core/group"
+      }
+    ],
+    "parts/variable-product-add-to-cart-with-options": [
+      {
+        "attrs": {},
+        "children": [
+          {
+            "attrs": {},
+            "children": [
+              {
+                "attrs": {
+                  "layout": {
+                    "flexWrap": "nowrap",
+                    "orientation": "vertical",
+                    "type": "flex"
+                  }
+                },
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/add-to-cart-with-options-variation-selector-attribute-name"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/product-filter-chips"
+                  }
+                ],
+                "name": "core/group"
+              }
+            ],
+            "name": "woocommerce/add-to-cart-with-options-variation-selector-attribute"
+          }
+        ],
+        "name": "woocommerce/add-to-cart-with-options-variation-selector"
+      },
+      {
+        "attrs": {},
+        "children": [],
+        "name": "woocommerce/add-to-cart-with-options-variation-description"
+      },
+      {
+        "attrs": {},
+        "children": [],
+        "name": "woocommerce/product-stock-indicator"
+      },
+      {
+        "attrs": {
+          "layout": {
+            "flexWrap": "wrap",
+            "type": "flex",
+            "verticalAlignment": "stretch"
+          }
+        },
+        "children": [
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/add-to-cart-with-options-quantity-selector"
+          },
+          {
+            "attrs": {
+              "textAlign": "left"
+            },
+            "children": [],
+            "name": "woocommerce/product-button"
+          }
+        ],
+        "name": "core/group"
+      }
+    ],
+    "templates/archive-product": [
+      {
+        "attrs": {
+          "slug": "header"
+        },
+        "children": [],
+        "name": "core/template-part"
+      },
+      {
+        "attrs": {
+          "layout": {
+            "inherit": true,
+            "type": "constrained"
+          },
+          "tagName": "main"
+        },
+        "children": [
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/breadcrumbs"
+          },
+          {
+            "attrs": {
+              "align": "wide"
+            },
+            "children": [],
+            "name": "core/query-title"
+          },
+          {
+            "attrs": {
+              "align": "wide"
+            },
+            "children": [],
+            "name": "core/term-description"
+          },
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/store-notices"
+          },
+          {
+            "attrs": {
+              "layout": {
+                "flexWrap": "nowrap",
+                "justifyContent": "space-between",
+                "type": "flex"
+              }
+            },
+            "children": [
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/product-results-count"
+              },
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/catalog-sorting"
+              }
+            ],
+            "name": "core/group"
+          },
+          {
+            "attrs": {
+              "align": "wide",
+              "displayLayout": {
+                "columns": 3,
+                "shrinkColumns": true,
+                "type": "flex"
+              },
+              "tagName": "div"
+            },
+            "children": [
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [
+                      {
+                        "attrs": {
+                          "align": "right"
+                        },
+                        "children": [],
+                        "name": "woocommerce/product-sale-badge"
+                      }
+                    ],
+                    "name": "woocommerce/product-image"
+                  },
+                  {
+                    "attrs": {
+                      "level": 2,
+                      "textAlign": "center"
+                    },
+                    "children": [],
+                    "name": "core/post-title"
+                  },
+                  {
+                    "attrs": {
+                      "textAlign": "center"
+                    },
+                    "children": [],
+                    "name": "woocommerce/product-price"
+                  },
+                  {
+                    "attrs": {
+                      "textAlign": "center"
+                    },
+                    "children": [],
+                    "name": "woocommerce/product-button"
+                  }
+                ],
+                "name": "woocommerce/product-template"
+              },
+              {
+                "attrs": {
+                  "layout": {
+                    "justifyContent": "center",
+                    "type": "flex"
+                  }
+                },
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "core/query-pagination-previous"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "core/query-pagination-numbers"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "core/query-pagination-next"
+                  }
+                ],
+                "name": "core/query-pagination"
+              },
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {
+                      "layout": {
+                        "flexWrap": "wrap",
+                        "justifyContent": "center",
+                        "orientation": "vertical",
+                        "type": "flex"
+                      }
+                    },
+                    "children": [
+                      {
+                        "attrs": {
+                          "slug": "woocommerce/no-products-found-clear-filters"
+                        },
+                        "children": [],
+                        "name": "core/pattern"
+                      }
+                    ],
+                    "name": "core/group"
+                  }
+                ],
+                "name": "woocommerce/product-collection-no-results"
+              }
+            ],
+            "name": "woocommerce/product-collection"
+          }
+        ],
+        "name": "core/group"
+      },
+      {
+        "attrs": {
+          "slug": "footer"
+        },
+        "children": [],
+        "name": "core/template-part"
+      }
+    ],
+    "templates/coming-soon": [
+      {
+        "attrs": {
+          "slug": "woocommerce/coming-soon"
+        },
+        "children": [],
+        "name": "core/pattern"
+      }
+    ],
+    "templates/order-confirmation": [
+      {
+        "attrs": {
+          "slug": "header"
+        },
+        "children": [],
+        "name": "core/template-part"
+      },
+      {
+        "attrs": {
+          "layout": {
+            "inherit": true,
+            "type": "constrained"
+          },
+          "tagName": "main"
+        },
+        "children": [
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/order-confirmation-status"
+          },
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/order-confirmation-summary"
+          },
+          {
+            "attrs": {
+              "align": "wide"
+            },
+            "children": [
+              {
+                "attrs": {
+                  "slug": "woocommerce/order-confirmation-totals-heading"
+                },
+                "children": [],
+                "name": "core/pattern"
+              },
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/order-confirmation-totals"
+              }
+            ],
+            "name": "woocommerce/order-confirmation-totals-wrapper"
+          },
+          {
+            "attrs": {
+              "align": "wide"
+            },
+            "children": [
+              {
+                "attrs": {
+                  "slug": "woocommerce/order-confirmation-downloads-heading"
+                },
+                "children": [],
+                "name": "core/pattern"
+              },
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/order-confirmation-downloads"
+              }
+            ],
+            "name": "woocommerce/order-confirmation-downloads-wrapper"
+          },
+          {
+            "attrs": {
+              "align": "wide",
+              "className": "wc-block-order-confirmation-address-wrapper"
+            },
+            "children": [
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {
+                      "align": "wide"
+                    },
+                    "children": [
+                      {
+                        "attrs": {
+                          "slug": "woocommerce/order-confirmation-shipping-heading"
+                        },
+                        "children": [],
+                        "name": "core/pattern"
+                      },
+                      {
+                        "attrs": {},
+                        "children": [],
+                        "name": "woocommerce/order-confirmation-shipping-address"
+                      }
+                    ],
+                    "name": "woocommerce/order-confirmation-shipping-wrapper"
+                  }
+                ],
+                "name": "core/column"
+              },
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {
+                      "align": "wide"
+                    },
+                    "children": [
+                      {
+                        "attrs": {
+                          "slug": "woocommerce/order-confirmation-billing-heading"
+                        },
+                        "children": [],
+                        "name": "core/pattern"
+                      },
+                      {
+                        "attrs": {},
+                        "children": [],
+                        "name": "woocommerce/order-confirmation-billing-address"
+                      }
+                    ],
+                    "name": "woocommerce/order-confirmation-billing-wrapper"
+                  }
+                ],
+                "name": "core/column"
+              }
+            ],
+            "name": "core/columns"
+          },
+          {
+            "attrs": {
+              "align": "wide"
+            },
+            "children": [
+              {
+                "attrs": {
+                  "slug": "woocommerce/order-confirmation-additional-fields-heading"
+                },
+                "children": [],
+                "name": "core/pattern"
+              },
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/order-confirmation-additional-fields"
+              }
+            ],
+            "name": "woocommerce/order-confirmation-additional-fields-wrapper"
+          },
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/order-confirmation-additional-information"
+          }
+        ],
+        "name": "core/group"
+      },
+      {
+        "attrs": {
+          "slug": "footer"
+        },
+        "children": [],
+        "name": "core/template-part"
+      }
+    ],
+    "templates/page-cart": [
+      {
+        "attrs": {
+          "slug": "header",
+          "tagName": "header"
+        },
+        "children": [],
+        "name": "core/template-part"
+      },
+      {
+        "attrs": {},
+        "children": [
+          {
+            "attrs": {
+              "layout": {
+                "type": "constrained"
+              },
+              "tagName": "main"
+            },
+            "children": [
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/store-notices"
+              },
+              {
+                "attrs": {
+                  "align": "wide",
+                  "level": 1
+                },
+                "children": [],
+                "name": "core/post-title"
+              },
+              {
+                "attrs": {
+                  "align": "wide"
+                },
+                "children": [],
+                "name": "core/post-content"
+              }
+            ],
+            "name": "core/group"
+          }
+        ],
+        "name": "woocommerce/page-content-wrapper"
+      },
+      {
+        "attrs": {
+          "slug": "footer",
+          "tagName": "footer"
+        },
+        "children": [],
+        "name": "core/template-part"
+      }
+    ],
+    "templates/page-checkout": [
+      {
+        "attrs": {
+          "slug": "checkout-header",
+          "tagName": "header",
+          "theme": "woocommerce/woocommerce"
+        },
+        "children": [],
+        "name": "core/template-part"
+      },
+      {
+        "attrs": {},
+        "children": [
+          {
+            "attrs": {
+              "layout": {
+                "type": "constrained"
+              },
+              "tagName": "main"
+            },
+            "children": [
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/store-notices"
+              },
+              {
+                "attrs": {
+                  "align": "wide"
+                },
+                "children": [],
+                "name": "core/post-content"
+              }
+            ],
+            "name": "core/group"
+          }
+        ],
+        "name": "woocommerce/page-content-wrapper"
+      }
+    ],
+    "templates/product-search-results": [
+      {
+        "attrs": {
+          "slug": "header"
+        },
+        "children": [],
+        "name": "core/template-part"
+      },
+      {
+        "attrs": {
+          "layout": {
+            "inherit": true,
+            "type": "constrained"
+          },
+          "tagName": "main"
+        },
+        "children": [
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/breadcrumbs"
+          },
+          {
+            "attrs": {
+              "align": "wide"
+            },
+            "children": [],
+            "name": "core/query-title"
+          },
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/store-notices"
+          },
+          {
+            "attrs": {
+              "layout": {
+                "flexWrap": "nowrap",
+                "justifyContent": "space-between",
+                "type": "flex"
+              }
+            },
+            "children": [
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/product-results-count"
+              },
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/catalog-sorting"
+              }
+            ],
+            "name": "core/group"
+          },
+          {
+            "attrs": {
+              "align": "wide",
+              "displayLayout": {
+                "columns": 3,
+                "shrinkColumns": true,
+                "type": "flex"
+              },
+              "tagName": "div"
+            },
+            "children": [
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [
+                      {
+                        "attrs": {
+                          "align": "right"
+                        },
+                        "children": [],
+                        "name": "woocommerce/product-sale-badge"
+                      }
+                    ],
+                    "name": "woocommerce/product-image"
+                  },
+                  {
+                    "attrs": {
+                      "level": 2,
+                      "textAlign": "center"
+                    },
+                    "children": [],
+                    "name": "core/post-title"
+                  },
+                  {
+                    "attrs": {
+                      "textAlign": "center"
+                    },
+                    "children": [],
+                    "name": "woocommerce/product-price"
+                  },
+                  {
+                    "attrs": {
+                      "textAlign": "center"
+                    },
+                    "children": [],
+                    "name": "woocommerce/product-button"
+                  }
+                ],
+                "name": "woocommerce/product-template"
+              },
+              {
+                "attrs": {
+                  "layout": {
+                    "justifyContent": "center",
+                    "type": "flex"
+                  }
+                },
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "core/query-pagination-previous"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "core/query-pagination-numbers"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "core/query-pagination-next"
+                  }
+                ],
+                "name": "core/query-pagination"
+              },
+              {
+                "attrs": {
+                  "align": "wide"
+                },
+                "children": [
+                  {
+                    "attrs": {
+                      "slug": "woocommerce/no-products-found"
+                    },
+                    "children": [],
+                    "name": "core/pattern"
+                  },
+                  {
+                    "attrs": {
+                      "slug": "woocommerce/product-search-form"
+                    },
+                    "children": [],
+                    "name": "core/pattern"
+                  }
+                ],
+                "name": "woocommerce/product-collection-no-results"
+              }
+            ],
+            "name": "woocommerce/product-collection"
+          }
+        ],
+        "name": "core/group"
+      },
+      {
+        "attrs": {
+          "slug": "footer"
+        },
+        "children": [],
+        "name": "core/template-part"
+      }
+    ],
+    "templates/single-product": [
+      {
+        "attrs": {
+          "slug": "header"
+        },
+        "children": [],
+        "name": "core/template-part"
+      },
+      {
+        "attrs": {
+          "layout": {
+            "inherit": true,
+            "type": "constrained"
+          },
+          "tagName": "main"
+        },
+        "children": [
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/breadcrumbs"
+          },
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/store-notices"
+          },
+          {
+            "attrs": {
+              "align": "wide"
+            },
+            "children": [
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/product-image-gallery"
+                  }
+                ],
+                "name": "core/column"
+              },
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {
+                      "level": 1
+                    },
+                    "children": [],
+                    "name": "core/post-title"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/product-rating"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/product-price"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "core/post-excerpt"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "woocommerce/add-to-cart-form"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [
+                      {
+                        "attrs": {
+                          "layout": {
+                            "flexWrap": "nowrap",
+                            "type": "flex"
+                          }
+                        },
+                        "children": [
+                          {
+                            "attrs": {},
+                            "children": [],
+                            "name": "woocommerce/product-sku"
+                          },
+                          {
+                            "attrs": {},
+                            "children": [],
+                            "name": "core/post-terms"
+                          },
+                          {
+                            "attrs": {},
+                            "children": [],
+                            "name": "core/post-terms"
+                          }
+                        ],
+                        "name": "core/group"
+                      }
+                    ],
+                    "name": "woocommerce/product-meta"
+                  }
+                ],
+                "name": "core/column"
+              }
+            ],
+            "name": "core/columns"
+          },
+          {
+            "attrs": {
+              "align": "wide",
+              "className": "is-style-minimal"
+            },
+            "children": [],
+            "name": "woocommerce/product-details"
+          },
+          {
+            "attrs": {
+              "slug": "woocommerce-blocks/related-products"
+            },
+            "children": [],
+            "name": "core/pattern"
+          }
+        ],
+        "name": "core/group"
+      },
+      {
+        "attrs": {
+          "slug": "footer"
+        },
+        "children": [],
+        "name": "core/template-part"
+      }
+    ],
+    "templates/taxonomy-product_attribute": [
+      {
+        "attrs": {
+          "slug": "header"
+        },
+        "children": [],
+        "name": "core/template-part"
+      },
+      {
+        "attrs": {
+          "layout": {
+            "inherit": true,
+            "type": "constrained"
+          },
+          "tagName": "main"
+        },
+        "children": [
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/breadcrumbs"
+          },
+          {
+            "attrs": {
+              "align": "wide"
+            },
+            "children": [],
+            "name": "core/query-title"
+          },
+          {
+            "attrs": {
+              "align": "wide"
+            },
+            "children": [],
+            "name": "core/term-description"
+          },
+          {
+            "attrs": {},
+            "children": [],
+            "name": "woocommerce/store-notices"
+          },
+          {
+            "attrs": {
+              "align": "wide",
+              "layout": {
+                "flexWrap": "nowrap",
+                "justifyContent": "space-between",
+                "type": "flex"
+              }
+            },
+            "children": [
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/product-results-count"
+              },
+              {
+                "attrs": {},
+                "children": [],
+                "name": "woocommerce/catalog-sorting"
+              }
+            ],
+            "name": "core/group"
+          },
+          {
+            "attrs": {
+              "align": "wide",
+              "displayLayout": {
+                "columns": 3,
+                "shrinkColumns": true,
+                "type": "flex"
+              },
+              "tagName": "div"
+            },
+            "children": [
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [
+                      {
+                        "attrs": {
+                          "align": "right"
+                        },
+                        "children": [],
+                        "name": "woocommerce/product-sale-badge"
+                      }
+                    ],
+                    "name": "woocommerce/product-image"
+                  },
+                  {
+                    "attrs": {
+                      "level": 2,
+                      "textAlign": "center"
+                    },
+                    "children": [],
+                    "name": "core/post-title"
+                  },
+                  {
+                    "attrs": {
+                      "textAlign": "center"
+                    },
+                    "children": [],
+                    "name": "woocommerce/product-price"
+                  },
+                  {
+                    "attrs": {
+                      "textAlign": "center"
+                    },
+                    "children": [],
+                    "name": "woocommerce/product-button"
+                  }
+                ],
+                "name": "woocommerce/product-template"
+              },
+              {
+                "attrs": {
+                  "layout": {
+                    "justifyContent": "center",
+                    "type": "flex"
+                  }
+                },
+                "children": [
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "core/query-pagination-previous"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "core/query-pagination-numbers"
+                  },
+                  {
+                    "attrs": {},
+                    "children": [],
+                    "name": "core/query-pagination-next"
+                  }
+                ],
+                "name": "core/query-pagination"
+              },
+              {
+                "attrs": {},
+                "children": [
+                  {
+                    "attrs": {
+                      "layout": {
+                        "flexWrap": "wrap",
+                        "justifyContent": "center",
+                        "orientation": "vertical",
+                        "type": "flex"
+                      }
+                    },
+                    "children": [
+                      {
+                        "attrs": {
+                          "slug": "woocommerce/no-products-found-clear-filters"
+                        },
+                        "children": [],
+                        "name": "core/pattern"
+                      }
+                    ],
+                    "name": "core/group"
+                  }
+                ],
+                "name": "woocommerce/product-collection-no-results"
+              }
+            ],
+            "name": "woocommerce/product-collection"
+          }
+        ],
+        "name": "core/group"
+      },
+      {
+        "attrs": {
+          "slug": "footer"
+        },
+        "children": [],
+        "name": "core/template-part"
+      }
+    ]
+  },
+  "version": "11.2.1"
+}

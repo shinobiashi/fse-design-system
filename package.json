@@ -1,0 +1,16 @@
+{
+  "name": "fse-design-system",
+  "private": true,
+  "type": "module",
+  "description": "FSE基盤: WordPress / WooCommerce のブロックに沿ったデザインシステムの元データと生成スクリプト",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "sync": "node scripts/sync.mjs",
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate.mjs",
+    "check-updates": "node scripts/check-updates.mjs",
+    "all": "node scripts/sync.mjs && node scripts/build.mjs && node scripts/validate.mjs"
+  }
+}

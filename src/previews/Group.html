@@ -1,0 +1,28 @@
+<!-- @dsCard height=420 subtitle="静的な再現(実際の出力と細部が異なることがある)" -->
+<div class="ds-stage">
+  <span class="ds-label">グループ(背景色付き・constrained)</span>
+  <div class="wp-block-group has-base-2-background-color has-background is-layout-constrained" data-wp-block="core/group">
+    <h3 class="wp-block-heading" data-wp-block="core/heading">季節のおすすめ</h3>
+    <p data-wp-block="core/paragraph">背景色と余白を持つまとまり。セクションの土台はすべてこのブロック。</p>
+  </div>
+  <div class="ds-row" style="margin-top: var(--wp--preset--spacing--40)">
+    <div class="ds-col">
+      <span class="ds-label">横並び(Row: is-layout-flex)</span>
+      <div class="wp-block-group is-layout-flex is-nowrap" data-wp-block="core/group">
+        <div class="ds-ph" data-label="画像" style="--ds-ratio: 1 / 1; width: 64px"></div>
+        <p data-wp-block="core/paragraph">アイコンと文章を横に並べる</p>
+      </div>
+    </div>
+    <div class="ds-col">
+      <span class="ds-label">縦積み(Stack: is-vertical)</span>
+      <div class="wp-block-group is-layout-flex is-vertical" data-wp-block="core/group" style="gap: var(--wp--preset--spacing--20)">
+        <p class="has-small-font-size has-contrast-2-color" data-wp-block="core/paragraph">2026.10.17</p>
+        <p data-wp-block="core/paragraph"><strong>秋の新作を公開しました</strong></p>
+      </div>
+    </div>
+  </div>
+  <span class="ds-label" style="margin-top: var(--wp--preset--spacing--40)">グリッド(Grid: is-layout-grid)</span>
+  <div class="wp-block-group is-layout-grid" data-wp-block="core/group">
+    <div class="ds-ph" data-label="1"></div><div class="ds-ph" data-label="2"></div><div class="ds-ph" data-label="3"></div>
+  </div>
+</div>

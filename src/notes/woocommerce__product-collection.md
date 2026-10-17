@@ -1,0 +1,4 @@
+- 商品一覧はすべてこのブロック(古い「All Products」「Handpicked Products」などは使わない)。
+- 中身は `woocommerce/product-template` の中に、商品画像 → 商品名 → 価格 → ボタンの順。評価は商品名の下に置ける。
+- 列数は PC 3〜4、スマホ 2。1 つの一覧で商品画像の比率をそろえる(既定は `ratio-square`)。
+- 件数・並び替え(`WcProductResultsCount`・`WcCatalogSorting`)は一覧の上に横並びで置く。

@@ -1,0 +1,3 @@
+- 2〜4 列まで。5 列以上は Grid(`core/group` の Grid)か、商品なら Product Collection を使う。
+- 781px 以下では自動で縦に積まれる。スマホで横並びを保ちたいときだけ `is-not-stacked-on-mobile`(2 列まで)。
+- 列の幅を変えるときは `flex-basis` をパーセントで(`style="flex-basis: 40%"`)。px で決めない。

@@ -1,0 +1,15 @@
+# CLAUDE.md
+
+デザインシステム「FSE基盤」の元データと生成スクリプト。全体像は `README.md`、公開手順は `PUBLISHING.md`。
+
+## ルール
+
+- `data/` と `dist/` は手で編集しない。`data/` は `npm run sync`、`dist/` は `npm run build` が作る。
+- 変更したら `npm run all` を通す(`validate` が OK で終わること)。CI は `data/` が `sync` の結果と一致することも確かめる。
+- トークンの名前(slug)は theme.json のプリセットの slug と一致させる。名前を変えると、omotegae のプロンプトと過去のデザインが参照できなくなるので、変えない。値は変えてよい。
+- 色を足したり変えたりしたら、`scripts/validate.mjs` の `PAIRS` にコントラストの組み合わせを足す。
+- 再現プレビュー(`src/previews/<部品>.html`)は、WordPress / WooCommerce が実際に出力するクラス構成に合わせ、値はプリセット変数(`var(--wp--preset--…)`)とクラス(`has-…-color` など)だけで書く。1 行目は `<!-- @dsCard height=N subtitle="…" -->`(group は build が付ける)。
+- 部品の名前は `scripts/lib.mjs` の `componentName()` が決める(コアは `PostTitle`、WooCommerce は `WcProductPrice`)。`core/cover` は表紙と衝突するので `CoverBlock`。
+- `scripts/authoring/` は最初の再現プレビューを書き出した使い捨てのスクリプト。いまは `src/previews/` が正なので、プレビューはそちらを直接直す。
+- 外部パッケージを足さない(Node の標準ライブラリと git だけで動かす)。
+- 文書は日本語。チャットやコミットにトークンや鍵を書かない。
