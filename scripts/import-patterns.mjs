@@ -6,7 +6,7 @@
 
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import { ROOT, readJson, writeFile } from './lib.mjs';
 
 const input = process.argv.slice(2).find((a) => !a.startsWith('--'));
@@ -40,7 +40,17 @@ if (removed.length && !process.argv.includes('--allow-removed')) {
   process.exit(1);
 }
 
+// The export holds no time of its own; the download's file name does
+// (omotegae-patterns-YYYYMMDD-HHMMSS.json, Asia/Tokyo). Keep it in sources.json.
+const stamp = basename(input).match(/omotegae-patterns-(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})(\d{2})\.json$/);
+const exportedAt = stamp ? `${stamp[1]}-${stamp[2]}-${stamp[3]}T${stamp[4]}:${stamp[5]}:${stamp[6]}+09:00` : null;
+if (!exportedAt) console.warn('ファイル名から書き出し日時が読めません(omotegae-patterns-YYYYMMDD-HHMMSS.json の形でない)。日時は「不明」になります。');
+
+const sourcesPath = join(ROOT, 'sources.json');
+const previousSources = readFileSync(sourcesPath, 'utf8');
 const previousText = existsSync(target) ? readFileSync(target, 'utf8') : null;
+const nextSources = { ...sources, omotegae: { ...sources.omotegae, exportedAt, provisional: false } };
+writeFile(sourcesPath, JSON.stringify(nextSources, null, 2) + '\n');
 writeFile(target, JSON.stringify(next, null, 4) + '\n');
 const run = (script) => execFileSync(process.execPath, [join(ROOT, 'scripts', script)], { stdio: 'inherit' });
 try {
@@ -50,6 +60,7 @@ try {
 } catch {
   // Put the previous export back so sources/ never holds a file that does not build, and
   // rebuild: build.mjs empties dist/ before it can fail, so data/ alone is not enough.
+  writeFile(sourcesPath, previousSources);
   if (previousText !== null) {
     writeFile(target, previousText);
     run('sync.mjs');
@@ -62,7 +73,8 @@ try {
 const stable = (v) => JSON.stringify(v);
 const oldMap = new Map(before.patterns.map((p) => [p.slug, p]));
 const newMap = new Map(next.patterns.map((p) => [p.slug, p]));
-const lines = [`書き出し: ${before.exported_at ?? '(なし)'} → ${next.exported_at}`];
+const previousLabel = sources.omotegae.provisional ? '仮のデータ(PatternSeeder)' : (sources.omotegae.exportedAt ?? '不明');
+const lines = [`書き出し: ${previousLabel} → ${exportedAt ?? '不明'}`];
 for (const [slug, p] of newMap) {
   const o = oldMap.get(slug);
   if (!o) {

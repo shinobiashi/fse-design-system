@@ -261,11 +261,13 @@ function syncOmotegae(knownBlocks) {
   });
   patterns.sort((a, b) => a.slug.localeCompare(b.slug));
 
-  writeFile(
-    join(DATA, 'omotegae/patterns.json'),
-    stableStringify({ format: doc.format, exportedAt: doc.exported_at ?? null, appVersion: doc.app_version ?? null, categories, patterns }),
-  );
-  return { exportedAt: doc.exported_at ?? null, count: patterns.length, active: patterns.filter((p) => p.status === 'active').length, warnings };
+  // The export carries no time of its own (omotegae keeps it byte-identical while the
+  // library is unchanged; the time is only in the download's file name). import-patterns
+  // records that time, and whether the file is a real export, in sources.json.
+  const exportedAt = sources.omotegae.exportedAt ?? null;
+  const provisional = sources.omotegae.provisional === true;
+  writeFile(join(DATA, 'omotegae/patterns.json'), stableStringify({ format: doc.format, exportedAt, provisional, categories, patterns }));
+  return { exportedAt, provisional, count: patterns.length, active: patterns.filter((p) => p.status === 'active').length, warnings };
 }
 
 const wp = syncWordPress();
@@ -290,5 +292,5 @@ writeFile(
 );
 console.log(`WordPress ${wp.tag}: ${wp.count} blocks`);
 console.log(`WooCommerce ${woo.tag}: ${woo.count} blocks, ${woo.templates} templates/parts`);
-console.log(`omotegae patterns (exported ${omotegae.exportedAt}): ${omotegae.count}, ${omotegae.active} active`);
+console.log(`omotegae patterns (${omotegae.provisional ? 'provisional, from PatternSeeder' : `exported ${omotegae.exportedAt ?? 'at an unknown time'}`}): ${omotegae.count}, ${omotegae.active} active`);
 for (const w of omotegae.warnings) console.warn(`warning: ${w}`);
