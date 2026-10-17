@@ -451,8 +451,15 @@ function patternReadme(comp, p) {
   lines.push(`| WooCommerce | ${p.requiresWoocommerce ? '必要(WooCommerce を使う案件だけで選ばれる)' : '不要'} |`);
   lines.push('');
   lines.push('## 使うブロック', '');
-  lines.push('この順に組む。セクション全体は全幅の `core/group`(`data-pattern` 付き)で包む。', '');
-  for (const b of p.blocks) lines.push(`1. ${blockLink(b)}`);
+  // block_map is a flat list of block names: it carries neither nesting nor how many
+  // times a block repeats, so it must not read as a construction recipe.
+  lines.push(
+    'omotegae の `block_map` に載っているブロックの一覧。順番・入れ子・数は表さないので、組み立ての手順として読まない。' +
+      '何を何の中に入れ、いくつ並べるかは、冒頭の説明と「入れる文言」の項目から決める(`member_1_…`〜`member_3_…` があれば 3 つ並べる、など)。' +
+      'セクション全体は全幅の `core/group`(`data-pattern` 付き)で包む。',
+    '',
+  );
+  for (const b of p.blocks) lines.push(`- ${blockLink(b)}`);
   lines.push('');
   lines.push('## 入れる文言', '');
   lines.push('ブリーフの `sections[].content` に入る項目。文字数は上限で、超えるとブリーフが確定できない。デザインでもこの長さで収まるようにする。', '');
@@ -466,7 +473,7 @@ function patternReadme(comp, p) {
   lines.push('```html');
   lines.push(`<section class="wp-block-group alignfull has-global-padding is-layout-constrained"`);
   lines.push(`         data-wp-block="core/group" data-pattern="${p.slug}">`);
-  lines.push(`  <!-- ${p.blocks.join(' → ')} -->`);
+  lines.push('  <!-- 中身は「使うブロック」から、説明と「入れる文言」の項目に合わせて組む -->');
   lines.push('</section>');
   lines.push('```', '');
   lines.push('- 文言はブリーフの値をそのまま入れる。足りない項目(必須でない空欄)は、その要素ごと出さない。');
@@ -477,12 +484,12 @@ function patternReadme(comp, p) {
 
 function patternSpecPreview(comp, p, group) {
   const blocks = p.blocks
-    .map((b, i) => `<li class="ds-pattern__block"><span class="ds-pattern__step">${i + 1}</span><code>${escapeHtml(b)}</code><span class="ds-pattern__comp">${byName.has(b) ? escapeHtml(componentName(b)) : ''}</span></li>`)
+    .map((b) => `<li class="ds-pattern__block"><code>${escapeHtml(b)}</code><span class="ds-pattern__comp">${byName.has(b) ? escapeHtml(componentName(b)) : ''}</span></li>`)
     .join('');
   const fields = p.fields
     .map((f) => `<li${f.required ? ' class="is-required"' : ''}>${escapeHtml(f.label || f.name)}${f.maxLength !== null ? ` <span>${f.maxLength}字</span>` : ''}</li>`)
     .join('');
-  const height = 230 + p.blocks.length * 34 + Math.ceil(p.fields.length / 3) * 28;
+  const height = 262 + p.blocks.length * 34 + Math.ceil(p.fields.length / 3) * 28;
   return `<!-- @dsCard group="${group}" height=${height} floor static subtitle="仕様カード(見た目の再現なし)" -->
 <div class="ds-spec ds-pattern">
   <div class="ds-spec__head">
@@ -490,7 +497,8 @@ function patternSpecPreview(comp, p, group) {
     <span class="ds-spec__name">${escapeHtml(p.slug)}</span>
   </div>
   <p class="ds-spec__meta">${escapeHtml(p.description)}</p>
-  <ol class="ds-pattern__blocks">${blocks}</ol>
+  <p class="ds-spec__meta">使うブロック(順番・入れ子・数は表さない)</p>
+  <ul class="ds-pattern__blocks">${blocks}</ul>
   <ul class="ds-spec__chips">${fields}</ul>
   <p class="ds-spec__meta">トーン: ${escapeHtml(p.toneTags.map((t) => TONE_LABELS[t] ?? t).join('・') || 'なし')}${p.requiresWoocommerce ? '　/　WooCommerce が必要' : ''}　/　太字の項目は必須</p>
 </div>
@@ -638,7 +646,7 @@ const TEMPLATE_LABELS = {
     lines.push(`## ${categoryLabel.get(cat) ?? `${cat}(廃止されたカテゴリ)`}`, '', '| パターン | 名前 | 状態 | 部品 | 使うブロック |', '|---|---|---|---|---|');
     for (const p of patternDoc.patterns.filter((x) => x.category === cat)) {
       const comp = p.status === 'active' ? patternComponentName(p.slug) : '—';
-      lines.push(`| \`${p.slug}\` | ${md(p.title)} | ${STATUS_LABELS[p.status] ?? p.status} | ${comp} | ${p.blocks.map((b) => `\`${b}\``).join(' → ')} |`);
+      lines.push(`| \`${p.slug}\` | ${md(p.title)} | ${STATUS_LABELS[p.status] ?? p.status} | ${comp} | ${p.blocks.map((b) => `\`${b}\``).join('、')} |`);
     }
     lines.push('');
   }
