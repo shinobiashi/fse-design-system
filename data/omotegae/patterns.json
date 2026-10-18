@@ -73,7 +73,7 @@
       "slug": "product-detail"
     }
   ],
-  "exportedAt": null,
+  "exportedAt": "2026-10-18T12:43:26+09:00",
   "format": "omotegae-patterns/1",
   "patterns": [
     {
@@ -87,17 +87,17 @@
       "fields": [
         {
           "enum": null,
-          "label": "セクション見出し",
-          "maxLength": 30,
-          "name": "heading",
+          "label": "本文(創業の経緯・想いなど)",
+          "maxLength": 300,
+          "name": "body",
           "required": true,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "本文(創業の経緯・想いなど)",
-          "maxLength": 300,
-          "name": "body",
+          "label": "セクション見出し",
+          "maxLength": 30,
+          "name": "heading",
           "required": true,
           "type": "string"
         }
@@ -201,18 +201,18 @@
       "fields": [
         {
           "enum": null,
-          "label": "キャンペーンの見出し",
-          "maxLength": 40,
-          "name": "heading",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "開催期間(任意)",
           "maxLength": 30,
           "name": "period",
           "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "キャンペーンの見出し",
+          "maxLength": 40,
+          "name": "heading",
+          "required": true,
           "type": "string"
         },
         {
@@ -253,17 +253,17 @@
         },
         {
           "enum": null,
-          "label": "終了日時の表記(例: 9月30日まで)",
-          "maxLength": 30,
-          "name": "end_date_note",
+          "label": "ボタンのラベル(任意)",
+          "maxLength": 20,
+          "name": "cta_label",
           "required": false,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "ボタンのラベル(任意)",
-          "maxLength": 20,
-          "name": "cta_label",
+          "label": "終了日時の表記(例: 9月30日まで)",
+          "maxLength": 30,
+          "name": "end_date_note",
           "required": false,
           "type": "string"
         }
@@ -352,18 +352,18 @@
       "fields": [
         {
           "enum": null,
-          "label": "セクション見出し",
-          "maxLength": 30,
-          "name": "heading",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "案内文",
           "maxLength": 100,
           "name": "body",
           "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "セクション見出し",
+          "maxLength": 30,
+          "name": "heading",
+          "required": true,
           "type": "string"
         },
         {
@@ -397,9 +397,25 @@
       "fields": [
         {
           "enum": null,
-          "label": "セクション見出し",
-          "maxLength": 30,
-          "name": "heading",
+          "label": "メールアドレス",
+          "maxLength": 80,
+          "name": "email",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "営業時間",
+          "maxLength": 60,
+          "name": "hours",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "電話番号",
+          "maxLength": 20,
+          "name": "phone",
           "required": true,
           "type": "string"
         },
@@ -413,26 +429,10 @@
         },
         {
           "enum": null,
-          "label": "電話番号",
-          "maxLength": 20,
-          "name": "phone",
+          "label": "セクション見出し",
+          "maxLength": 30,
+          "name": "heading",
           "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
-          "label": "メールアドレス",
-          "maxLength": 80,
-          "name": "email",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
-          "label": "営業時間",
-          "maxLength": 60,
-          "name": "hours",
-          "required": false,
           "type": "string"
         }
       ],
@@ -458,18 +458,18 @@
       "fields": [
         {
           "enum": null,
-          "label": "呼びかけの見出し",
-          "maxLength": 36,
-          "name": "heading",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "補足文",
           "maxLength": 80,
           "name": "body",
           "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "呼びかけの見出し",
+          "maxLength": 36,
+          "name": "heading",
+          "required": true,
           "type": "string"
         },
         {
@@ -554,25 +554,9 @@
         },
         {
           "enum": null,
-          "label": "質問1",
-          "maxLength": 60,
-          "name": "question_1",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "回答1",
           "maxLength": 200,
           "name": "answer_1",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
-          "label": "質問2",
-          "maxLength": 60,
-          "name": "question_2",
           "required": true,
           "type": "string"
         },
@@ -586,14 +570,6 @@
         },
         {
           "enum": null,
-          "label": "質問3",
-          "maxLength": 60,
-          "name": "question_3",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "回答3",
           "maxLength": 200,
           "name": "answer_3",
@@ -602,17 +578,41 @@
         },
         {
           "enum": null,
-          "label": "質問4",
-          "maxLength": 60,
-          "name": "question_4",
+          "label": "回答4",
+          "maxLength": 200,
+          "name": "answer_4",
           "required": false,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "回答4",
-          "maxLength": 200,
-          "name": "answer_4",
+          "label": "質問1",
+          "maxLength": 60,
+          "name": "question_1",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "質問2",
+          "maxLength": 60,
+          "name": "question_2",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "質問3",
+          "maxLength": 60,
+          "name": "question_3",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "質問4",
+          "maxLength": 60,
+          "name": "question_4",
           "required": false,
           "type": "string"
         }
@@ -645,17 +645,33 @@
         },
         {
           "enum": null,
-          "label": "質問1",
-          "maxLength": 60,
-          "name": "question_1",
+          "label": "回答1",
+          "maxLength": 200,
+          "name": "answer_1",
           "required": true,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "回答1",
+          "label": "回答2",
           "maxLength": 200,
-          "name": "answer_1",
+          "name": "answer_2",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "回答3",
+          "maxLength": 200,
+          "name": "answer_3",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "質問1",
+          "maxLength": 60,
+          "name": "question_1",
           "required": true,
           "type": "string"
         },
@@ -669,25 +685,9 @@
         },
         {
           "enum": null,
-          "label": "回答2",
-          "maxLength": 200,
-          "name": "answer_2",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "質問3",
           "maxLength": 60,
           "name": "question_3",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
-          "label": "回答3",
-          "maxLength": 200,
-          "name": "answer_3",
           "required": false,
           "type": "string"
         }
@@ -722,17 +722,17 @@
         },
         {
           "enum": null,
-          "label": "商品の魅力を伝える一言",
-          "maxLength": 100,
-          "name": "appeal_text",
+          "label": "商品ページへのボタンラベル(任意)",
+          "maxLength": 20,
+          "name": "cta_label",
           "required": false,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "商品ページへのボタンラベル(任意)",
-          "maxLength": 20,
-          "name": "cta_label",
+          "label": "商品の魅力を伝える一言",
+          "maxLength": 100,
+          "name": "appeal_text",
           "required": false,
           "type": "string"
         }
@@ -758,17 +758,17 @@
       "fields": [
         {
           "enum": null,
-          "label": "セクション見出し",
-          "maxLength": 30,
-          "name": "heading",
+          "label": "商品にまつわるストーリー・こだわり",
+          "maxLength": 200,
+          "name": "story",
           "required": true,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "商品にまつわるストーリー・こだわり",
-          "maxLength": 200,
-          "name": "story",
+          "label": "セクション見出し",
+          "maxLength": 30,
+          "name": "heading",
           "required": true,
           "type": "string"
         }
@@ -803,26 +803,10 @@
         },
         {
           "enum": null,
-          "label": "特徴1の見出し",
-          "maxLength": 30,
-          "name": "feature_1_title",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "特徴1の説明",
           "maxLength": 80,
           "name": "feature_1_body",
           "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
-          "label": "特徴2の見出し",
-          "maxLength": 30,
-          "name": "feature_2_title",
-          "required": true,
           "type": "string"
         },
         {
@@ -835,18 +819,34 @@
         },
         {
           "enum": null,
-          "label": "特徴3の見出し",
+          "label": "特徴3の説明",
+          "maxLength": 80,
+          "name": "feature_3_body",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "特徴1の見出し",
           "maxLength": 30,
-          "name": "feature_3_title",
+          "name": "feature_1_title",
           "required": true,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "特徴3の説明",
-          "maxLength": 80,
-          "name": "feature_3_body",
-          "required": false,
+          "label": "特徴2の見出し",
+          "maxLength": 30,
+          "name": "feature_2_title",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "特徴3の見出し",
+          "maxLength": 30,
+          "name": "feature_3_title",
+          "required": true,
           "type": "string"
         }
       ],
@@ -881,26 +881,10 @@
         },
         {
           "enum": null,
-          "label": "特徴1の見出し",
-          "maxLength": 30,
-          "name": "feature_1_title",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "特徴1の説明",
           "maxLength": 60,
           "name": "feature_1_body",
           "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
-          "label": "特徴2の見出し",
-          "maxLength": 30,
-          "name": "feature_2_title",
-          "required": true,
           "type": "string"
         },
         {
@@ -913,14 +897,6 @@
         },
         {
           "enum": null,
-          "label": "特徴3の見出し",
-          "maxLength": 30,
-          "name": "feature_3_title",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "特徴3の説明",
           "maxLength": 60,
           "name": "feature_3_body",
@@ -929,18 +905,42 @@
         },
         {
           "enum": null,
-          "label": "特徴4の見出し",
+          "label": "特徴4の説明",
+          "maxLength": 60,
+          "name": "feature_4_body",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "特徴1の見出し",
           "maxLength": 30,
-          "name": "feature_4_title",
+          "name": "feature_1_title",
           "required": true,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "特徴4の説明",
-          "maxLength": 60,
-          "name": "feature_4_body",
-          "required": false,
+          "label": "特徴2の見出し",
+          "maxLength": 30,
+          "name": "feature_2_title",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "特徴3の見出し",
+          "maxLength": 30,
+          "name": "feature_3_title",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "特徴4の見出し",
+          "maxLength": 30,
+          "name": "feature_4_title",
+          "required": true,
           "type": "string"
         }
       ],
@@ -973,10 +973,13 @@
           "type": "string"
         },
         {
-          "enum": null,
-          "label": "補足のリード文",
-          "maxLength": 80,
-          "name": "subheading",
+          "enum": [
+            "left",
+            "center"
+          ],
+          "label": "テキストの寄せ位置",
+          "maxLength": null,
+          "name": "alignment",
           "required": false,
           "type": "string"
         },
@@ -989,13 +992,10 @@
           "type": "string"
         },
         {
-          "enum": [
-            "left",
-            "center"
-          ],
-          "label": "テキストの寄せ位置",
-          "maxLength": null,
-          "name": "alignment",
+          "enum": null,
+          "label": "補足のリード文",
+          "maxLength": 80,
+          "name": "subheading",
           "required": false,
           "type": "string"
         }
@@ -1060,18 +1060,18 @@
       "fields": [
         {
           "enum": null,
-          "label": "メインの見出し",
-          "maxLength": 36,
-          "name": "heading",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "説明文",
           "maxLength": 120,
           "name": "body",
           "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "メインの見出し",
+          "maxLength": 36,
+          "name": "heading",
+          "required": true,
           "type": "string"
         },
         {
@@ -1124,18 +1124,18 @@
         },
         {
           "enum": null,
-          "label": "登録特典など誘導文(任意)",
-          "maxLength": 80,
-          "name": "incentive",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "登録ボタンのラベル",
           "maxLength": 20,
           "name": "cta_label",
           "required": true,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "登録特典など誘導文(任意)",
+          "maxLength": 80,
+          "name": "incentive",
+          "required": false,
           "type": "string"
         }
       ],
@@ -1160,18 +1160,18 @@
       "fields": [
         {
           "enum": null,
-          "label": "セクション見出し",
-          "maxLength": 30,
-          "name": "heading",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "登録を促す一言",
           "maxLength": 80,
           "name": "body",
           "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "セクション見出し",
+          "maxLength": 30,
+          "name": "heading",
+          "required": true,
           "type": "string"
         },
         {
@@ -1205,18 +1205,18 @@
       "fields": [
         {
           "enum": null,
-          "label": "セクション見出し",
-          "maxLength": 30,
-          "name": "heading",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "前文(任意)",
           "maxLength": 80,
           "name": "intro",
           "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "セクション見出し",
+          "maxLength": 30,
+          "name": "heading",
+          "required": true,
           "type": "string"
         }
       ],
@@ -1242,18 +1242,18 @@
       "fields": [
         {
           "enum": null,
-          "label": "セクション見出し",
-          "maxLength": 30,
-          "name": "heading",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "前文(任意)",
           "maxLength": 80,
           "name": "intro",
           "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "セクション見出し",
+          "maxLength": 30,
+          "name": "heading",
+          "required": true,
           "type": "string"
         }
       ],
@@ -1296,25 +1296,17 @@
         },
         {
           "enum": null,
-          "label": "プラン1の価格表記",
+          "label": "プラン2の名称",
           "maxLength": 20,
-          "name": "plan_1_price",
+          "name": "plan_2_name",
           "required": true,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "プラン1の特徴まとめ",
-          "maxLength": 80,
-          "name": "plan_1_feature_summary",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
-          "label": "プラン2の名称",
+          "label": "プラン1の価格表記",
           "maxLength": 20,
-          "name": "plan_2_name",
+          "name": "plan_1_price",
           "required": true,
           "type": "string"
         },
@@ -1324,6 +1316,14 @@
           "maxLength": 20,
           "name": "plan_2_price",
           "required": true,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "プラン1の特徴まとめ",
+          "maxLength": 80,
+          "name": "plan_1_feature_summary",
+          "required": false,
           "type": "string"
         },
         {
@@ -1374,25 +1374,25 @@
         },
         {
           "enum": null,
-          "label": "プラン1の価格表記",
+          "label": "プラン2の名称",
           "maxLength": 20,
-          "name": "plan_1_price",
+          "name": "plan_2_name",
           "required": true,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "プラン1の説明",
-          "maxLength": 80,
-          "name": "plan_1_description",
+          "label": "プラン3の名称",
+          "maxLength": 20,
+          "name": "plan_3_name",
           "required": false,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "プラン2の名称",
+          "label": "プラン1の価格表記",
           "maxLength": 20,
-          "name": "plan_2_name",
+          "name": "plan_1_price",
           "required": true,
           "type": "string"
         },
@@ -1406,25 +1406,25 @@
         },
         {
           "enum": null,
-          "label": "プラン2の説明",
-          "maxLength": 80,
-          "name": "plan_2_description",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
-          "label": "プラン3の名称",
-          "maxLength": 20,
-          "name": "plan_3_name",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "プラン3の価格表記",
           "maxLength": 20,
           "name": "plan_3_price",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "プラン1の説明",
+          "maxLength": 80,
+          "name": "plan_1_description",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "プラン2の説明",
+          "maxLength": 80,
+          "name": "plan_2_description",
           "required": false,
           "type": "string"
         },
@@ -1457,18 +1457,18 @@
       "fields": [
         {
           "enum": null,
-          "label": "セクション見出し",
-          "maxLength": 30,
-          "name": "heading",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "前文(任意)",
           "maxLength": 80,
           "name": "intro",
           "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "セクション見出し",
+          "maxLength": 30,
+          "name": "heading",
+          "required": true,
           "type": "string"
         }
       ],
@@ -1493,18 +1493,18 @@
       "fields": [
         {
           "enum": null,
-          "label": "セクション見出し",
-          "maxLength": 30,
-          "name": "heading",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "前文(任意)",
           "maxLength": 80,
           "name": "intro",
           "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "セクション見出し",
+          "maxLength": 30,
+          "name": "heading",
+          "required": true,
           "type": "string"
         }
       ],
@@ -1529,17 +1529,17 @@
       "fields": [
         {
           "enum": null,
-          "label": "商品説明への補足文(任意)",
-          "maxLength": 160,
-          "name": "additional_description",
+          "label": "ギャラリーのキャプション(任意)",
+          "maxLength": 60,
+          "name": "gallery_caption",
           "required": false,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "ギャラリーのキャプション(任意)",
-          "maxLength": 60,
-          "name": "gallery_caption",
+          "label": "商品説明への補足文(任意)",
+          "maxLength": 160,
+          "name": "additional_description",
           "required": false,
           "type": "string"
         }
@@ -1564,17 +1564,17 @@
       "fields": [
         {
           "enum": null,
-          "label": "商品説明への補足文(任意)",
-          "maxLength": 160,
-          "name": "additional_description",
+          "label": "配送に関する注記(任意)",
+          "maxLength": 80,
+          "name": "shipping_note",
           "required": false,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "配送に関する注記(任意)",
-          "maxLength": 80,
-          "name": "shipping_note",
+          "label": "商品説明への補足文(任意)",
+          "maxLength": 160,
+          "name": "additional_description",
           "required": false,
           "type": "string"
         }
@@ -1600,18 +1600,18 @@
       "fields": [
         {
           "enum": null,
-          "label": "セクション見出し",
-          "maxLength": 30,
-          "name": "heading",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "前文(任意)",
           "maxLength": 80,
           "name": "intro",
           "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "セクション見出し",
+          "maxLength": 30,
+          "name": "heading",
+          "required": true,
           "type": "string"
         }
       ],
@@ -1637,18 +1637,18 @@
       "fields": [
         {
           "enum": null,
-          "label": "セクション見出し",
-          "maxLength": 30,
-          "name": "heading",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "前文(任意)",
           "maxLength": 80,
           "name": "intro",
           "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "セクション見出し",
+          "maxLength": 30,
+          "name": "heading",
+          "required": true,
           "type": "string"
         },
         {
@@ -1688,9 +1688,9 @@
         },
         {
           "enum": null,
-          "label": "配送についての一言",
+          "label": "返品についての一言",
           "maxLength": 60,
-          "name": "shipping_note",
+          "name": "return_note",
           "required": false,
           "type": "string"
         },
@@ -1704,9 +1704,9 @@
         },
         {
           "enum": null,
-          "label": "返品についての一言",
+          "label": "配送についての一言",
           "maxLength": 60,
-          "name": "return_note",
+          "name": "shipping_note",
           "required": false,
           "type": "string"
         }
@@ -1783,14 +1783,6 @@
         },
         {
           "enum": null,
-          "label": "声1の発言者名",
-          "maxLength": 30,
-          "name": "testimonial_1_author",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "声2の本文",
           "maxLength": 100,
           "name": "testimonial_2_quote",
@@ -1799,18 +1791,26 @@
         },
         {
           "enum": null,
-          "label": "声2の発言者名",
+          "label": "声3の本文",
+          "maxLength": 100,
+          "name": "testimonial_3_quote",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "声1の発言者名",
           "maxLength": 30,
-          "name": "testimonial_2_author",
+          "name": "testimonial_1_author",
           "required": false,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "声3の本文",
-          "maxLength": 100,
-          "name": "testimonial_3_quote",
-          "required": true,
+          "label": "声2の発言者名",
+          "maxLength": 30,
+          "name": "testimonial_2_author",
+          "required": false,
           "type": "string"
         },
         {
@@ -1896,26 +1896,10 @@
         },
         {
           "enum": null,
-          "label": "作品1のタイトル",
-          "maxLength": 30,
-          "name": "work_1_title",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "enum": null,
           "label": "作品1のコメント",
           "maxLength": 60,
           "name": "work_1_body",
           "required": false,
-          "type": "string"
-        },
-        {
-          "enum": null,
-          "label": "作品2のタイトル",
-          "maxLength": 30,
-          "name": "work_2_title",
-          "required": true,
           "type": "string"
         },
         {
@@ -1928,18 +1912,34 @@
         },
         {
           "enum": null,
-          "label": "作品3のタイトル",
+          "label": "作品3のコメント",
+          "maxLength": 60,
+          "name": "work_3_body",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "作品1のタイトル",
           "maxLength": 30,
-          "name": "work_3_title",
+          "name": "work_1_title",
           "required": true,
           "type": "string"
         },
         {
           "enum": null,
-          "label": "作品3のコメント",
-          "maxLength": 60,
-          "name": "work_3_body",
-          "required": false,
+          "label": "作品2のタイトル",
+          "maxLength": 30,
+          "name": "work_2_title",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "enum": null,
+          "label": "作品3のタイトル",
+          "maxLength": 30,
+          "name": "work_3_title",
+          "required": true,
           "type": "string"
         }
       ],
@@ -2014,5 +2014,5 @@
       "version": 1
     }
   ],
-  "provisional": true
+  "provisional": false
 }

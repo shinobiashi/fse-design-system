@@ -10,12 +10,9 @@ WordPress と WooCommerce のブロックテーマ(FSE)に落とし込む前提�
 |---|---|---|
 | WordPress | 7.1.3(`WordPress/wordpress-develop`) | 115 |
 | WooCommerce | 11.2.1(`woocommerce/woocommerce`) | 178 |
-
-| omotegae のパターン | 本番の管理画面から書き出した JSON(`sources/omotegae-patterns.json`) | 37 件(公開中 33 件が部品) |
+| omotegae のパターン | 本番の管理画面から 2026-10-18 12:43 に書き出した JSON(`sources/omotegae-patterns.json`) | 37 件(公開中 33 件が部品) |
 
 正は `sources.json`(固定するリリースタグ、書き出しファイルの場所と日時)と `data/versions.json`(同期の結果)。
-
-> いまの `sources/omotegae-patterns.json` は、omotegae の `PatternSeeder` から作った**仮のデータ**。omotegae の書き出し機能(PR #98)を本番に出したら、本番から書き出した JSON で置き換える(下の「omotegae のパターンの取り込み」)。
 
 ## 仕組み
 
