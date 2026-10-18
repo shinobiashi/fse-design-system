@@ -54,6 +54,7 @@ npm run validate   # 形式・コントラスト・置き換え漏れの検査
 npm run all        # 上の 3 つ
 npm run check-updates   # 新しいリリースがあれば sources.json を上げて作り直し、変更点を dist/update-summary.md に書く
 npm run import-patterns <file>   # omotegae から書き出したパターンを取り込み、変更点を出す
+npm run check-patterns   # 壊れた omotegae の書き出しを sync・build・取り込みに与え、検査が拒否することを確かめる(作業ツリーの一時コピーで実行。CI でも実行)
 python3 scripts/render-check.py [部品名…]   # 任意: プレビューを Chromium で描画し dist/render/ に保存(Python の playwright が必要)
 ```
 
