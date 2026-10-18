@@ -50,10 +50,12 @@ const sourcesPath = join(ROOT, 'sources.json');
 const previousSources = readFileSync(sourcesPath, 'utf8');
 const previousText = existsSync(target) ? readFileSync(target, 'utf8') : null;
 const nextSources = { ...sources, omotegae: { ...sources.omotegae, exportedAt, provisional: false } };
-writeFile(sourcesPath, JSON.stringify(nextSources, null, 2) + '\n');
-writeFile(target, JSON.stringify(next, null, 4) + '\n');
 const run = (script) => execFileSync(process.execPath, [join(ROOT, 'scripts', script)], { stdio: 'inherit' });
 try {
+  // Both writes sit inside the try: if the second one fails, sources.json must not keep
+  // the new export's metadata next to the old export.
+  writeFile(sourcesPath, JSON.stringify(nextSources, null, 2) + '\n');
+  writeFile(target, JSON.stringify(next, null, 4) + '\n');
   run('sync.mjs');
   run('build.mjs');
   run('validate.mjs');
