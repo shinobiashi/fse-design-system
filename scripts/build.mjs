@@ -430,7 +430,7 @@ for (const [comp, block] of [...comps.entries()].sort((a, b) => a[0].localeCompa
 // only listed in the 06 section: a design never starts from them.
 
 const patternDoc = readJson(join(DATA, 'omotegae/patterns.json'));
-const patternProvisional = String(patternDoc.appVersion ?? '').startsWith('seed');
+const patternProvisional = patternDoc.provisional === true;
 const categoryLabel = new Map(patternDoc.categories.map((c) => [c.slug, c.label]));
 const shortLabel = (slug) => (categoryLabel.get(slug) ?? slug).split('(')[0];
 const TONE_LABELS = {
@@ -630,7 +630,7 @@ const TEMPLATE_LABELS = {
   const lines = [
     '# omotegae のパターン',
     '',
-    `omotegae のパターンライブラリ(書き出し日時 ${patternDoc.exportedAt ?? '不明'}、omotegae ${patternDoc.appVersion ?? '?'})。` +
+    `omotegae のパターンライブラリ(${patternProvisional ? '仮のデータ' : `書き出し日時 ${patternDoc.exportedAt ?? '不明'}`})。` +
       `公開中の ${activePatterns.length} 件はそれぞれ部品(\`Pattern…\`)になっている。トップページのセクションは、ブリーフが指定したパターンの部品に従って組む。`,
     '',
   ];
@@ -648,7 +648,10 @@ const TEMPLATE_LABELS = {
     (a, b) => (order.indexOf(a) < 0 ? 99 : order.indexOf(a)) - (order.indexOf(b) < 0 ? 99 : order.indexOf(b)) || a.localeCompare(b),
   );
   for (const cat of cats) {
-    lines.push(`## ${categoryLabel.get(cat) ?? `${cat}(廃止されたカテゴリ)`}`, '', '| パターン | 名前 | 状態 | 部品 | 使うブロック |', '|---|---|---|---|---|');
+    // A category the form no longer offers has no label of its own: omotegae exports it
+    // with the slug as its label (SectionCategoryLabels' fallback), or not at all.
+    const label = categoryLabel.get(cat);
+    lines.push(`## ${label && label !== cat ? label : `${cat}(廃止されたカテゴリ)`}`, '', '| パターン | 名前 | 状態 | 部品 | 使うブロック |', '|---|---|---|---|---|');
     for (const p of patternDoc.patterns.filter((x) => x.category === cat)) {
       const comp = p.status === 'active' ? patternComponentName(p.slug) : '—';
       lines.push(`| \`${p.slug}\` | ${md(p.title)} | ${STATUS_LABELS[p.status] ?? p.status} | ${comp} | ${p.blocks.map((b) => `\`${b}\``).join('、')} |`);

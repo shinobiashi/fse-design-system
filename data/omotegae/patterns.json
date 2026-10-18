@@ -1,5 +1,4 @@
 {
-  "appVersion": "seed (PatternSeeder の初期データ。本番の書き出しで置き換える)",
   "categories": [
     {
       "label": "ファーストビュー(メインビジュアル+行動ボタン)",
@@ -64,9 +63,17 @@
     {
       "label": "ページ末尾の行動喚起",
       "slug": "cta"
+    },
+    {
+      "label": "cart-checkout",
+      "slug": "cart-checkout"
+    },
+    {
+      "label": "product-detail",
+      "slug": "product-detail"
     }
   ],
-  "exportedAt": "2026-10-18T00:00:00+09:00",
+  "exportedAt": null,
   "format": "omotegae-patterns/1",
   "patterns": [
     {
@@ -2006,5 +2013,6 @@
       ],
       "version": 1
     }
-  ]
+  ],
+  "provisional": true
 }
