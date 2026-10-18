@@ -8,8 +8,8 @@
 //
 // When a check is added to sync.mjs or import-patterns.mjs, add a case here.
 
-import { execFileSync } from 'node:child_process';
-import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, relative, sep } from 'node:path';
 import { ROOT, readJson } from './lib.mjs';
@@ -19,6 +19,7 @@ const WORK = mkdtempSync(join(tmpdir(), 'fse-check-patterns-'));
 const COPY = join(WORK, 'repo');
 let exportPath; // set once the copy exists
 let original;
+let originalSources; // sources.json, which import-patterns writes the export time into
 
 const fresh = () => JSON.parse(original);
 const active = (doc) => doc.patterns.find((p) => p.status === 'active');
@@ -26,17 +27,14 @@ const firstField = (p) => p.content_schema.properties[Object.keys(p.content_sche
 const writeExport = (doc) => writeFileSync(exportPath, JSON.stringify(doc, null, 4) + '\n');
 const readCopy = (path) => readFileSync(join(COPY, path), 'utf8');
 
+// stdout and stderr together, also on success: warnings go to stderr.
 function run(script, args = []) {
-  try {
-    const out = execFileSync(process.execPath, [join(COPY, 'scripts', script), ...args], {
-      cwd: COPY,
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe'],
-    });
-    return { ok: true, out };
-  } catch (e) {
-    return { ok: false, out: `${e.stdout ?? ''}${e.stderr ?? ''}` };
-  }
+  const res = spawnSync(process.execPath, [join(COPY, 'scripts', script), ...args], {
+    cwd: COPY,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  return { ok: res.status === 0, out: `${res.stdout ?? ''}${res.stderr ?? ''}${res.error ? res.error.message : ''}` };
 }
 
 // Why a script stopped: the thrown error's message, else the last line that is not
@@ -68,6 +66,13 @@ function exportFile(name, doc) {
   return path;
 }
 
+// Two slugs that normalize to the same component name: sync accepts them, build stops.
+function collidingExport() {
+  const doc = fresh();
+  doc.patterns.push({ ...structuredClone(active(doc)), slug: 'zz-collide-1' }, { ...structuredClone(active(doc)), slug: 'zz-collide1' });
+  return doc;
+}
+
 const cases = [];
 
 // ---- sync.mjs refuses malformed exports before it writes data/omotegae/
@@ -88,6 +93,7 @@ const sync = (name, mutate, re) =>
 sync('形式名が違う', (d) => { d.format = 'omotegae-patterns/0'; }, /format must be "omotegae-patterns\/1"/);
 sync('patterns が配列でない', (d) => { d.patterns = {}; }, /patterns is not a list/);
 sync('categories が配列でない', (d) => { d.categories = {}; }, /categories is not a list/);
+sync('カテゴリの slug の形が違う', (d) => { d.categories[0].slug = 'Bad Slug'; }, /categories\[0\] is malformed/);
 sync('カテゴリの label が文字列でない', (d) => { d.categories[0].label = 1; }, /categories\[0\] is malformed/);
 sync('slug の形が違う', (d) => { active(d).slug = 'Bad Slug'; }, /slug is malformed/);
 sync('slug が重複', (d) => { d.patterns.push(structuredClone(active(d))); }, /slug appears twice/);
@@ -96,12 +102,15 @@ sync('status が未知', (d) => { active(d).status = 'published'; }, /unknown st
 sync('title が文字列でない', (d) => { active(d).title = 1; }, /title is not a string/);
 sync('description_for_ai が文字列でない', (d) => { active(d).description_for_ai = null; }, /description_for_ai is not a string/);
 sync('block_map が配列でない', (d) => { active(d).block_map = 'core/group'; }, /block_map is not a list of block names/);
-sync('tone_tags に文字列でない値', (d) => { active(d).tone_tags = [1]; }, /tone_tags is not a list/);
+sync('block_map に文字列でない要素', (d) => { active(d).block_map.push(1); }, /block_map is not a list of block names/);
+sync('tone_tags が配列でない', (d) => { active(d).tone_tags = 'modern'; }, /tone_tags is not a list/);
+sync('tone_tags に文字列でない要素', (d) => { active(d).tone_tags = [1]; }, /tone_tags is not a list/);
 sync('requires_woocommerce が文字列', (d) => { active(d).requires_woocommerce = 'true'; }, /requires_woocommerce is not a boolean/);
 sync('requires_woocommerce が数値', (d) => { active(d).requires_woocommerce = 1; }, /requires_woocommerce is not a boolean/);
 sync('content_schema が配列', (d) => { active(d).content_schema = []; }, /content_schema is not an object/);
 sync('properties が配列', (d) => { active(d).content_schema.properties = []; }, /content_schema\.properties is not an object/);
 sync('required が配列でない', (d) => { active(d).content_schema.required = 'heading'; }, /content_schema\.required is not a list of field names/);
+sync('required に文字列でない要素', (d) => { active(d).content_schema.required = [1]; }, /content_schema\.required is not a list of field names/);
 sync('required の項目に定義が無い', (d) => { (active(d).content_schema.required ??= []).push('no_such_field'); }, /required field "no_such_field" has no definition/);
 sync('required の名前が Object.prototype にだけある', (d) => { (active(d).content_schema.required ??= []).push('toString'); }, /required field "toString" has no definition/);
 sync('項目名が小文字の識別子でない', (d) => { active(d).content_schema.properties['plan-name'] = { type: 'string' }; }, /field name "plan-name" is not a lowercase identifier/);
@@ -118,9 +127,7 @@ sync('maxLength が整数でない', (d) => { firstField(active(d)).maxLength = 
 cases.push([
   '正規化すると同じ部品名になる slug は止める',
   () => {
-    const doc = fresh();
-    doc.patterns.push({ ...structuredClone(active(doc)), slug: 'zz-collide-1' }, { ...structuredClone(active(doc)), slug: 'zz-collide1' });
-    writeExport(doc);
+    writeExport(collidingExport());
     const s = run('sync.mjs');
     if (!s.ok) return `sync: ${reason(s)}`;
     const res = run('build.mjs');
@@ -178,12 +185,11 @@ cases.push([
     const failure = syncAndBuild();
     if (failure) return failure;
     const dataBefore = readCopy(SYNCED);
-    const doc = fresh();
-    doc.patterns.push({ ...structuredClone(active(doc)), slug: 'zz-collide-1' }, { ...structuredClone(active(doc)), slug: 'zz-collide1' });
-    const res = run('import-patterns.mjs', [exportFile('import', doc)]);
+    const res = run('import-patterns.mjs', [exportFile('import', collidingExport())]);
     if (!refused(res, /both map to the component name/)) return `import: ${why(res)}`;
     const broken = [
       readFileSync(exportPath, 'utf8') !== original && 'sources/',
+      readCopy('sources.json') !== originalSources && 'sources.json',
       readCopy(SYNCED) !== dataBefore && 'data/',
       !['dist/project/components/index.d.ts', 'dist/publish-plan.json'].every((p) => existsSync(join(COPY, p))) && 'dist/',
     ].filter(Boolean);
@@ -215,6 +221,49 @@ cases.push([
   },
 ]);
 
+// ---- import-patterns.mjs takes the export time from the download's file name
+const omotegaeSources = () => JSON.parse(readCopy('sources.json')).omotegae;
+cases.push([
+  'ファイル名の日時を sources.json に記録する',
+  () => {
+    const res = run('import-patterns.mjs', [exportFile('omotegae-patterns-20261018-091500', fresh())]);
+    if (!res.ok) return `import: ${reason(res)}`;
+    const o = omotegaeSources();
+    return (o.exportedAt === '2026-10-18T09:15:00+09:00' && o.provisional === false) || `sources.json: ${JSON.stringify(o)}`;
+  },
+]);
+cases.push([
+  'ありえない日時のファイル名は、警告して日時を「不明」にする',
+  () => {
+    const res = run('import-patterns.mjs', [exportFile('omotegae-patterns-20261340-256099', fresh())]);
+    if (!res.ok) return `import: ${reason(res)}`;
+    const o = omotegaeSources();
+    return (o.exportedAt === null && /ありえない日時/.test(res.out)) || `exportedAt: ${o.exportedAt}`;
+  },
+]);
+cases.push([
+  '書き出しを書き込めなかった取り込みは sources.json を元に戻す',
+  () => {
+    // A link into a missing directory: writing the export fails (even as root) after
+    // sources.json has been written.
+    rmSync(exportPath);
+    symlinkSync(join(WORK, 'missing', 'export.json'), exportPath);
+    const res = run('import-patterns.mjs', [exportFile('omotegae-patterns-20261018-091500', fresh())]);
+    if (!refused(res, /取り込めませんでした/)) return `import: ${why(res)}`;
+    return readCopy('sources.json') === originalSources || 'sources.json が元に戻っていない';
+  },
+]);
+cases.push([
+  '取り込み前に書き出しが無ければ、失敗した取り込みは書き込んだ書き出しを消す',
+  () => {
+    rmSync(exportPath);
+    const res = run('import-patterns.mjs', [exportFile('import', collidingExport())]);
+    if (!refused(res, /書き込んだ書き出しを消しました/)) return `import: ${why(res)}`;
+    const left = [existsSync(exportPath) && 'sources/ の書き出し', readCopy('sources.json') !== originalSources && 'sources.json'].filter(Boolean);
+    return left.length === 0 || `残っている: ${left.join('、')}`;
+  },
+]);
+
 // ---- run
 let failed = 0;
 try {
@@ -226,11 +275,16 @@ try {
   });
   exportPath = join(COPY, readJson(join(COPY, 'sources.json')).omotegae.patternsFile);
   original = readFileSync(exportPath, 'utf8');
+  originalSources = readCopy('sources.json');
   // The working tree's export must sync and build; otherwise every case below is noise.
   const failure = syncAndBuild();
   if (failure) throw new Error(`いまの書き出しで sync / build が通らない: ${failure}`);
   for (const [name, check] of cases) {
+    // Every case starts from the real export and sources.json (a case may have replaced
+    // the export with a link or removed it).
+    rmSync(exportPath, { force: true });
     writeFileSync(exportPath, original);
+    writeFileSync(join(COPY, 'sources.json'), originalSources);
     let result;
     try {
       result = check();
