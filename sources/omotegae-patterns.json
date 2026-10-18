@@ -86,25 +86,25 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "body"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "セクション見出し"
-                    },
                     "body": {
                         "type": "string",
                         "maxLength": 300,
                         "description": "本文(創業の経緯・想いなど)"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "calm",
@@ -127,9 +127,8 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "member_1_name",
@@ -171,7 +170,8 @@
                         "maxLength": 30,
                         "description": "メンバー3の役割"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "modern",
@@ -192,30 +192,30 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "cta_label"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 40,
-                        "description": "キャンペーンの見出し"
-                    },
                     "period": {
                         "type": "string",
                         "maxLength": 30,
                         "description": "開催期間(任意)"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 40,
+                        "description": "キャンペーンの見出し"
                     },
                     "cta_label": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "ボタンのラベル"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "vivid",
@@ -236,9 +236,8 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading"
                 ],
@@ -248,17 +247,18 @@
                         "maxLength": 40,
                         "description": "キャンペーンの見出し"
                     },
-                    "end_date_note": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "終了日時の表記(例: 9月30日まで)"
-                    },
                     "cta_label": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "ボタンのラベル(任意)"
+                    },
+                    "end_date_note": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "終了日時の表記(例: 9月30日まで)"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "sharp",
@@ -278,9 +278,8 @@
                 "woocommerce/checkout"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [],
                 "properties": {
                     "trust_message": {
@@ -288,7 +287,8 @@
                         "maxLength": 80,
                         "description": "安心感を伝える一言(送料・返品ポリシー等・任意)"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "sharp",
@@ -309,9 +309,8 @@
                 "core/heading"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [],
                 "properties": {
                     "heading": {
@@ -324,7 +323,8 @@
                         "maxLength": 80,
                         "description": "安心感を伝える一言(送料・返品ポリシー等・任意)"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "simple",
@@ -345,30 +345,30 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "submit_label"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "セクション見出し"
-                    },
                     "body": {
                         "type": "string",
                         "maxLength": 100,
                         "description": "案内文"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
                     },
                     "submit_label": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "送信ボタンのラベル"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "soft",
@@ -390,30 +390,14 @@
                 "core/column"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "address",
                     "phone"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "セクション見出し"
-                    },
-                    "address": {
-                        "type": "string",
-                        "maxLength": 100,
-                        "description": "住所"
-                    },
-                    "phone": {
-                        "type": "string",
-                        "maxLength": 20,
-                        "description": "電話番号"
-                    },
                     "email": {
                         "type": "string",
                         "maxLength": 80,
@@ -423,8 +407,24 @@
                         "type": "string",
                         "maxLength": 60,
                         "description": "営業時間"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "電話番号"
+                    },
+                    "address": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "description": "住所"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "classic",
@@ -446,30 +446,30 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "cta_label"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 36,
-                        "description": "呼びかけの見出し"
-                    },
                     "body": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "補足文"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 36,
+                        "description": "呼びかけの見出し"
                     },
                     "cta_label": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "ボタンのラベル"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "vivid",
@@ -491,9 +491,8 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "cta_label"
@@ -514,7 +513,8 @@
                         "maxLength": 30,
                         "description": "ボタン下の補足"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "calm",
@@ -534,9 +534,8 @@
                 "core/heading"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "question_1",
@@ -550,47 +549,48 @@
                         "maxLength": 30,
                         "description": "セクション見出し"
                     },
-                    "question_1": {
-                        "type": "string",
-                        "maxLength": 60,
-                        "description": "質問1"
-                    },
                     "answer_1": {
                         "type": "string",
                         "maxLength": 200,
                         "description": "回答1"
-                    },
-                    "question_2": {
-                        "type": "string",
-                        "maxLength": 60,
-                        "description": "質問2"
                     },
                     "answer_2": {
                         "type": "string",
                         "maxLength": 200,
                         "description": "回答2"
                     },
-                    "question_3": {
-                        "type": "string",
-                        "maxLength": 60,
-                        "description": "質問3"
-                    },
                     "answer_3": {
                         "type": "string",
                         "maxLength": 200,
                         "description": "回答3"
                     },
-                    "question_4": {
-                        "type": "string",
-                        "maxLength": 60,
-                        "description": "質問4"
-                    },
                     "answer_4": {
                         "type": "string",
                         "maxLength": 200,
                         "description": "回答4"
+                    },
+                    "question_1": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問1"
+                    },
+                    "question_2": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問2"
+                    },
+                    "question_3": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問3"
+                    },
+                    "question_4": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問4"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "simple",
@@ -610,9 +610,8 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "question_1",
@@ -624,37 +623,38 @@
                         "maxLength": 30,
                         "description": "セクション見出し"
                     },
-                    "question_1": {
-                        "type": "string",
-                        "maxLength": 60,
-                        "description": "質問1"
-                    },
                     "answer_1": {
                         "type": "string",
                         "maxLength": 200,
                         "description": "回答1"
-                    },
-                    "question_2": {
-                        "type": "string",
-                        "maxLength": 60,
-                        "description": "質問2"
                     },
                     "answer_2": {
                         "type": "string",
                         "maxLength": 200,
                         "description": "回答2"
                     },
-                    "question_3": {
-                        "type": "string",
-                        "maxLength": 60,
-                        "description": "質問3"
-                    },
                     "answer_3": {
                         "type": "string",
                         "maxLength": 200,
                         "description": "回答3"
+                    },
+                    "question_1": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問1"
+                    },
+                    "question_2": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問2"
+                    },
+                    "question_3": {
+                        "type": "string",
+                        "maxLength": 60,
+                        "description": "質問3"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "classic",
@@ -676,9 +676,8 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading"
                 ],
@@ -688,17 +687,18 @@
                         "maxLength": 30,
                         "description": "セクション見出し"
                     },
-                    "appeal_text": {
-                        "type": "string",
-                        "maxLength": 100,
-                        "description": "商品の魅力を伝える一言"
-                    },
                     "cta_label": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "商品ページへのボタンラベル(任意)"
+                    },
+                    "appeal_text": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "description": "商品の魅力を伝える一言"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "rich",
@@ -719,25 +719,25 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "story"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "セクション見出し"
-                    },
                     "story": {
                         "type": "string",
                         "maxLength": 200,
                         "description": "商品にまつわるストーリー・こだわり"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "classic",
@@ -759,9 +759,8 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "feature_1_title",
@@ -774,37 +773,38 @@
                         "maxLength": 30,
                         "description": "セクション見出し"
                     },
-                    "feature_1_title": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "特徴1の見出し"
-                    },
                     "feature_1_body": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "特徴1の説明"
-                    },
-                    "feature_2_title": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "特徴2の見出し"
                     },
                     "feature_2_body": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "特徴2の説明"
                     },
-                    "feature_3_title": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "特徴3の見出し"
-                    },
                     "feature_3_body": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "特徴3の説明"
+                    },
+                    "feature_1_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴1の見出し"
+                    },
+                    "feature_2_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴2の見出し"
+                    },
+                    "feature_3_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴3の見出し"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "simple",
@@ -827,9 +827,8 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "feature_1_title",
@@ -843,47 +842,48 @@
                         "maxLength": 30,
                         "description": "セクション見出し"
                     },
-                    "feature_1_title": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "特徴1の見出し"
-                    },
                     "feature_1_body": {
                         "type": "string",
                         "maxLength": 60,
                         "description": "特徴1の説明"
-                    },
-                    "feature_2_title": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "特徴2の見出し"
                     },
                     "feature_2_body": {
                         "type": "string",
                         "maxLength": 60,
                         "description": "特徴2の説明"
                     },
-                    "feature_3_title": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "特徴3の見出し"
-                    },
                     "feature_3_body": {
                         "type": "string",
                         "maxLength": 60,
                         "description": "特徴3の説明"
                     },
-                    "feature_4_title": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "特徴4の見出し"
-                    },
                     "feature_4_body": {
                         "type": "string",
                         "maxLength": 60,
                         "description": "特徴4の説明"
+                    },
+                    "feature_1_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴1の見出し"
+                    },
+                    "feature_2_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴2の見出し"
+                    },
+                    "feature_3_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴3の見出し"
+                    },
+                    "feature_4_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "特徴4の見出し"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "sharp",
@@ -905,9 +905,8 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "cta_label"
@@ -918,25 +917,26 @@
                         "maxLength": 40,
                         "description": "メインの見出し"
                     },
-                    "subheading": {
+                    "alignment": {
+                        "enum": [
+                            "left",
+                            "center"
+                        ],
                         "type": "string",
-                        "maxLength": 80,
-                        "description": "補足のリード文"
+                        "description": "テキストの寄せ位置"
                     },
                     "cta_label": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "ボタンのラベル"
                     },
-                    "alignment": {
+                    "subheading": {
                         "type": "string",
-                        "enum": [
-                            "left",
-                            "center"
-                        ],
-                        "description": "テキストの寄せ位置"
+                        "maxLength": 80,
+                        "description": "補足のリード文"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "modern",
@@ -958,9 +958,8 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading"
                 ],
@@ -975,7 +974,8 @@
                         "maxLength": 20,
                         "description": "ボタンのラベル"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "classic",
@@ -998,23 +998,22 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "cta_label"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 36,
-                        "description": "メインの見出し"
-                    },
                     "body": {
                         "type": "string",
                         "maxLength": 120,
                         "description": "説明文"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 36,
+                        "description": "メインの見出し"
                     },
                     "cta_label": {
                         "type": "string",
@@ -1022,14 +1021,15 @@
                         "description": "ボタンのラベル"
                     },
                     "image_position": {
-                        "type": "string",
                         "enum": [
                             "left",
                             "right"
                         ],
+                        "type": "string",
                         "description": "画像の配置"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "modern",
@@ -1051,9 +1051,8 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "cta_label"
@@ -1064,17 +1063,18 @@
                         "maxLength": 30,
                         "description": "セクション見出し"
                     },
-                    "incentive": {
-                        "type": "string",
-                        "maxLength": 80,
-                        "description": "登録特典など誘導文(任意)"
-                    },
                     "cta_label": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "登録ボタンのラベル"
+                    },
+                    "incentive": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "登録特典など誘導文(任意)"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "modern",
@@ -1095,30 +1095,30 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "cta_label"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "セクション見出し"
-                    },
                     "body": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "登録を促す一言"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
                     },
                     "cta_label": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "登録ボタンのラベル"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "simple",
@@ -1140,24 +1140,24 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "セクション見出し"
-                    },
                     "intro": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "前文(任意)"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "modern",
@@ -1179,24 +1179,24 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "セクション見出し"
-                    },
                     "intro": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "前文(任意)"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "simple",
@@ -1219,9 +1219,8 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "plan_1_name",
@@ -1240,32 +1239,33 @@
                         "maxLength": 20,
                         "description": "プラン1の名称"
                     },
-                    "plan_1_price": {
-                        "type": "string",
-                        "maxLength": 20,
-                        "description": "プラン1の価格表記"
-                    },
-                    "plan_1_feature_summary": {
-                        "type": "string",
-                        "maxLength": 80,
-                        "description": "プラン1の特徴まとめ"
-                    },
                     "plan_2_name": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "プラン2の名称"
+                    },
+                    "plan_1_price": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン1の価格表記"
                     },
                     "plan_2_price": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "プラン2の価格表記"
                     },
+                    "plan_1_feature_summary": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "プラン1の特徴まとめ"
+                    },
                     "plan_2_feature_summary": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "プラン2の特徴まとめ"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "rich",
@@ -1288,9 +1288,8 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "plan_1_name",
@@ -1309,47 +1308,48 @@
                         "maxLength": 20,
                         "description": "プラン1の名称"
                     },
-                    "plan_1_price": {
-                        "type": "string",
-                        "maxLength": 20,
-                        "description": "プラン1の価格表記"
-                    },
-                    "plan_1_description": {
-                        "type": "string",
-                        "maxLength": 80,
-                        "description": "プラン1の説明"
-                    },
                     "plan_2_name": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "プラン2の名称"
-                    },
-                    "plan_2_price": {
-                        "type": "string",
-                        "maxLength": 20,
-                        "description": "プラン2の価格表記"
-                    },
-                    "plan_2_description": {
-                        "type": "string",
-                        "maxLength": 80,
-                        "description": "プラン2の説明"
                     },
                     "plan_3_name": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "プラン3の名称"
                     },
+                    "plan_1_price": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン1の価格表記"
+                    },
+                    "plan_2_price": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "プラン2の価格表記"
+                    },
                     "plan_3_price": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "プラン3の価格表記"
+                    },
+                    "plan_1_description": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "プラン1の説明"
+                    },
+                    "plan_2_description": {
+                        "type": "string",
+                        "maxLength": 80,
+                        "description": "プラン2の説明"
                     },
                     "plan_3_description": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "プラン3の説明"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "sharp",
@@ -1369,24 +1369,24 @@
                 "core/heading"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "セクション見出し"
-                    },
                     "intro": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "前文(任意)"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "simple",
@@ -1407,24 +1407,24 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "セクション見出し"
-                    },
                     "intro": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "前文(任意)"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "rich",
@@ -1445,22 +1445,22 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [],
                 "properties": {
-                    "additional_description": {
-                        "type": "string",
-                        "maxLength": 160,
-                        "description": "商品説明への補足文(任意)"
-                    },
                     "gallery_caption": {
                         "type": "string",
                         "maxLength": 60,
                         "description": "ギャラリーのキャプション(任意)"
+                    },
+                    "additional_description": {
+                        "type": "string",
+                        "maxLength": 160,
+                        "description": "商品説明への補足文(任意)"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "modern",
@@ -1480,22 +1480,22 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [],
                 "properties": {
-                    "additional_description": {
-                        "type": "string",
-                        "maxLength": 160,
-                        "description": "商品説明への補足文(任意)"
-                    },
                     "shipping_note": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "配送に関する注記(任意)"
+                    },
+                    "additional_description": {
+                        "type": "string",
+                        "maxLength": 160,
+                        "description": "商品説明への補足文(任意)"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "classic",
@@ -1516,24 +1516,24 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "セクション見出し"
-                    },
                     "intro": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "前文(任意)"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "simple",
@@ -1555,30 +1555,30 @@
                 "core/buttons"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "cta_label"
                 ],
                 "properties": {
-                    "heading": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "セクション見出し"
-                    },
                     "intro": {
                         "type": "string",
                         "maxLength": 80,
                         "description": "前文(任意)"
+                    },
+                    "heading": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "セクション見出し"
                     },
                     "cta_label": {
                         "type": "string",
                         "maxLength": 20,
                         "description": "一覧へのボタンラベル"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "vivid",
@@ -1598,9 +1598,8 @@
                 "core/columns"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading"
                 ],
@@ -1610,22 +1609,23 @@
                         "maxLength": 30,
                         "description": "セクション見出し"
                     },
-                    "shipping_note": {
+                    "return_note": {
                         "type": "string",
                         "maxLength": 60,
-                        "description": "配送についての一言"
+                        "description": "返品についての一言"
                     },
                     "payment_note": {
                         "type": "string",
                         "maxLength": 60,
                         "description": "お支払い方法についての一言"
                     },
-                    "return_note": {
+                    "shipping_note": {
                         "type": "string",
                         "maxLength": 60,
-                        "description": "返品についての一言"
+                        "description": "配送についての一言"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "simple",
@@ -1645,9 +1645,8 @@
                 "core/list"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading"
                 ],
@@ -1662,7 +1661,8 @@
                         "maxLength": 80,
                         "description": "締めの一言(任意)"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "modern",
@@ -1683,9 +1683,8 @@
                 "core/quote"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "testimonial_1_quote",
@@ -1703,32 +1702,33 @@
                         "maxLength": 100,
                         "description": "声1の本文"
                     },
-                    "testimonial_1_author": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "声1の発言者名"
-                    },
                     "testimonial_2_quote": {
                         "type": "string",
                         "maxLength": 100,
                         "description": "声2の本文"
-                    },
-                    "testimonial_2_author": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "声2の発言者名"
                     },
                     "testimonial_3_quote": {
                         "type": "string",
                         "maxLength": 100,
                         "description": "声3の本文"
                     },
+                    "testimonial_1_author": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "声1の発言者名"
+                    },
+                    "testimonial_2_author": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "声2の発言者名"
+                    },
                     "testimonial_3_author": {
                         "type": "string",
                         "maxLength": 30,
                         "description": "声3の発言者名"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "modern",
@@ -1748,9 +1748,8 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "quote",
                     "author_name"
@@ -1771,7 +1770,8 @@
                         "maxLength": 40,
                         "description": "発言者の属性(例: ○○様、△△業)"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "calm",
@@ -1794,9 +1794,8 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading",
                     "work_1_title",
@@ -1809,37 +1808,38 @@
                         "maxLength": 30,
                         "description": "セクション見出し"
                     },
-                    "work_1_title": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "作品1のタイトル"
-                    },
                     "work_1_body": {
                         "type": "string",
                         "maxLength": 60,
                         "description": "作品1のコメント"
-                    },
-                    "work_2_title": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "作品2のタイトル"
                     },
                     "work_2_body": {
                         "type": "string",
                         "maxLength": 60,
                         "description": "作品2のコメント"
                     },
-                    "work_3_title": {
-                        "type": "string",
-                        "maxLength": 30,
-                        "description": "作品3のタイトル"
-                    },
                     "work_3_body": {
                         "type": "string",
                         "maxLength": 60,
                         "description": "作品3のコメント"
+                    },
+                    "work_1_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "作品1のタイトル"
+                    },
+                    "work_2_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "作品2のタイトル"
+                    },
+                    "work_3_title": {
+                        "type": "string",
+                        "maxLength": 30,
+                        "description": "作品3のタイトル"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "classic",
@@ -1860,9 +1860,8 @@
                 "core/paragraph"
             ],
             "content_schema": {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "type": "object",
-                "additionalProperties": false,
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
                 "required": [
                     "heading"
                 ],
@@ -1892,7 +1891,8 @@
                         "maxLength": 40,
                         "description": "作品4のキャプション"
                     }
-                }
+                },
+                "additionalProperties": false
             },
             "tone_tags": [
                 "modern",
