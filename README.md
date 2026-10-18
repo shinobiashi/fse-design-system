@@ -13,7 +13,7 @@ WordPress と WooCommerce のブロックテーマ(FSE)に落とし込む前提�
 
 | omotegae のパターン | 本番の管理画面から書き出した JSON(`sources/omotegae-patterns.json`) | 37 件(公開中 33 件が部品) |
 
-正は `sources.json`(固定するリリースタグと書き出しファイルの場所)と `data/versions.json`(同期の結果)。
+正は `sources.json`(固定するリリースタグ、書き出しファイルの場所と日時)と `data/versions.json`(同期の結果)。
 
 > いまの `sources/omotegae-patterns.json` は、omotegae の `PatternSeeder` から作った**仮のデータ**。omotegae の書き出し機能(PR #98)を本番に出したら、本番から書き出した JSON で置き換える(下の「omotegae のパターンの取り込み」)。
 
@@ -29,7 +29,7 @@ src/ ─────────────────────────
 
 | パス | 中身 | 手で編集するか |
 |---|---|---|
-| `sources.json` | 取り込む WordPress / WooCommerce のリリースタグと、omotegae の書き出しファイルの場所 | する(または更新の PR が書き換える) |
+| `sources.json` | 取り込む WordPress / WooCommerce のリリースタグと、omotegae の書き出しファイルの場所・書き出し日時(`omotegae.exportedAt`)・仮のデータかどうか(`provisional`) | する(タグは更新の PR も書き換える。日時と `provisional` は `import-patterns` が書く) |
 | `sources/omotegae-patterns.json` | omotegae の管理画面から書き出したパターン(形式 `omotegae-patterns/1`) | しない(`npm run import-patterns` が置く) |
 | `data/` | タグから取り出したブロック定義・theme.json の既定値・Woo のテンプレート構成 | しない(`npm run sync` が作る) |
 | `src/tokens.base.json` | 色・書体・文字サイズ・角丸・レイアウトのトークン | する |
@@ -62,7 +62,7 @@ python3 scripts/render-check.py [部品名…]   # 任意: プレビューを Ch
 パターンの正は omotegae の**本番の `patterns` テーブル**(管理画面で追加・編集でき、`PatternSeeder` はそれを上書きしない)。パターンを追加・編集したら、次の手順でデザインシステムに反映する。
 
 1. omotegae の管理画面 → パターン → 「JSON で書き出す」で `omotegae-patterns-YYYYMMDD-HHMMSS.json` を保存する。
-2. `npm run import-patterns <保存したファイル>` を実行する。`sources/omotegae-patterns.json` を置き換えて同期・ビルド・検査をやり直し、追加・変更されたパターンを一覧で出す。
+2. `npm run import-patterns <保存したファイル>` を実行する。`sources/omotegae-patterns.json` を置き換えて同期・ビルド・検査をやり直し、追加・変更されたパターンを一覧で出す。書き出し日時はファイル名から読んで `sources.json` に記録するので、ファイル名は変えずに渡す(変えると日時は「不明」になる)。
 3. 公開中のパターンが増えたら、必要に応じて再現プレビュー(`src/pattern-previews/<部品>.html`)を足す。
 4. コミットして、`PUBLISHING.md` の手順で公開する。
 
