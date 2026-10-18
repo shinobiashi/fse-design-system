@@ -23,3 +23,6 @@ jobs:
         run: |
           node scripts/build.mjs
           node scripts/validate.mjs
+      # Broken omotegae exports must be refused, in a throwaway copy of the checkout.
+      - name: Pattern checks
+        run: node scripts/check-patterns.mjs
