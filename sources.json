@@ -9,6 +9,8 @@
   },
   "omotegae": {
     "repo": "shinobiashi/omotegae-project",
-    "patternsFile": "sources/omotegae-patterns.json"
+    "patternsFile": "sources/omotegae-patterns.json",
+    "exportedAt": null,
+    "provisional": true
   }
 }

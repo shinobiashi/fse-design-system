@@ -1,7 +1,5 @@
 {
     "format": "omotegae-patterns/1",
-    "exported_at": "2026-10-18T00:00:00+09:00",
-    "app_version": "seed (PatternSeeder の初期データ。本番の書き出しで置き換える)",
     "categories": [
         {
             "slug": "hero",
@@ -66,6 +64,14 @@
         {
             "slug": "cta",
             "label": "ページ末尾の行動喚起"
+        },
+        {
+            "slug": "cart-checkout",
+            "label": "cart-checkout"
+        },
+        {
+            "slug": "product-detail",
+            "label": "product-detail"
         }
     ],
     "patterns": [
