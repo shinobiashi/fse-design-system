@@ -5,7 +5,7 @@
 //   node scripts/import-patterns.mjs <path/to/omotegae-patterns-YYYYMMDD-HHMMSS.json>
 
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, rmSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { ROOT, readJson, writeFile } from './lib.mjs';
 
@@ -43,8 +43,14 @@ if (removed.length && !process.argv.includes('--allow-removed')) {
 // The export holds no time of its own; the download's file name does
 // (omotegae-patterns-YYYYMMDD-HHMMSS.json, Asia/Tokyo). Keep it in sources.json.
 const stamp = basename(input).match(/omotegae-patterns-(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})(\d{2})\.json$/);
-const exportedAt = stamp ? `${stamp[1]}-${stamp[2]}-${stamp[3]}T${stamp[4]}:${stamp[5]}:${stamp[6]}+09:00` : null;
-if (!exportedAt) console.warn('ファイル名から書き出し日時が読めません(omotegae-patterns-YYYYMMDD-HHMMSS.json の形でない)。日時は「不明」になります。');
+// The digits must also be a real date and time: Date.UTC rolls 2026-13-40 over into the
+// next year, so a value that does not come back unchanged was out of range.
+const isRealTime = ([y, mo, d, h, mi, s]) => {
+  const t = new Date(Date.UTC(y, mo - 1, d, h, mi, s));
+  return [t.getUTCFullYear(), t.getUTCMonth() + 1, t.getUTCDate(), t.getUTCHours(), t.getUTCMinutes(), t.getUTCSeconds()].join() === [y, mo, d, h, mi, s].join();
+};
+const exportedAt = stamp && isRealTime(stamp.slice(1).map(Number)) ? `${stamp[1]}-${stamp[2]}-${stamp[3]}T${stamp[4]}:${stamp[5]}:${stamp[6]}+09:00` : null;
+if (!exportedAt) console.warn('ファイル名から書き出し日時が読めません(omotegae-patterns-YYYYMMDD-HHMMSS.json の形でないか、ありえない日時)。日時は「不明」になります。');
 
 const sourcesPath = join(ROOT, 'sources.json');
 const previousSources = readFileSync(sourcesPath, 'utf8');
@@ -67,8 +73,11 @@ try {
     writeFile(target, previousText);
     run('sync.mjs');
     run('build.mjs');
+  } else {
+    // There was no export before: remove the one just written rather than leave it.
+    rmSync(target, { force: true });
   }
-  console.error('取り込めませんでした(上のエラーを参照)。前の書き出しに戻しました。');
+  console.error(`取り込めませんでした(上のエラーを参照)。${previousText !== null ? '前の書き出しに戻しました。' : '書き込んだ書き出しを消しました。'}`);
   process.exit(1);
 }
 
