@@ -1,11 +1,11 @@
 {
   "wordpress": {
     "repo": "WordPress/wordpress-develop",
-    "tag": "7.1.3"
+    "tag": "7.1.4"
   },
   "woocommerce": {
     "repo": "woocommerce/woocommerce",
-    "tag": "11.2.1"
+    "tag": "11.2.2"
   },
   "omotegae": {
     "repo": "shinobiashi/omotegae-project",
